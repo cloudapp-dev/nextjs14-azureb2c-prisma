@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -9,8 +10,6 @@ const nextConfig = {
       },
     ],
   },
-  // images: { domains: ["images.ctfassets.net"] },
-  // reactStrictMode: true,
 };
 
 module.exports = nextConfig;

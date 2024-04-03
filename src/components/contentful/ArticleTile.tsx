@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 import { ArticleAuthor } from "@/components/contentful/ArticleAuthor";
 import { CtfImage } from "@/components/contentful/CtfImage.component";
+import { CtfPicture } from "@/components/contentful/CtfPicture.component";
 import { FormatDate } from "@/components/contentful/format-date/FormatDate";
 import { PageBlogPostFieldsFragment } from "@/lib/__generated/sdk";
 import type { LocaleTypes } from "@/app/i18n/settings";
@@ -27,7 +28,7 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
         )}
       >
         {article.featuredImage && (
-          <CtfImage
+          <CtfPicture
             nextImageProps={{ className: "object-cover aspect-[16/10] w-full" }}
             {...article.featuredImage}
           />

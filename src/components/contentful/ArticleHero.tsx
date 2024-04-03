@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 import { ArticleAuthor } from "@/components/contentful/ArticleAuthor";
 import { CtfImage } from "@/components/contentful/CtfImage.component";
+import { CtfPicture } from "@/components/contentful/CtfPicture.component";
 import { FormatDate } from "@/components/contentful/format-date/FormatDate";
 import { PageBlogPostFieldsFragment } from "@/lib/__generated/sdk";
 
@@ -26,7 +27,7 @@ export const ArticleHero = ({
     >
       <div className="flex-1 basis-1/2">
         {article.featuredImage && (
-          <CtfImage
+          <CtfPicture
             nextImageProps={{
               className: "w-full",
               priority: true,

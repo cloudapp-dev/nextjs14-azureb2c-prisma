@@ -6,6 +6,7 @@ import { BLOCKS, MARKS, Document, INLINES } from "@contentful/rich-text-types";
 import { ArticleImage } from "@/components/contentful/ArticleImage.component";
 import { ComponentRichImage } from "@/lib/__generated/sdk";
 import { CtfImage } from "@/components/contentful/CtfImage.component";
+import { CtfPicture } from "@/components/contentful/CtfPicture.component";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 
@@ -82,7 +83,7 @@ export const contentfulBaseRichTextOptions = ({
         <>
           <figure>
             <div className="flex justify-center">
-              <CtfImage
+              <CtfPicture
                 nextImageProps={{
                   className: twMerge(
                     "mt-0 mb-0 ",
