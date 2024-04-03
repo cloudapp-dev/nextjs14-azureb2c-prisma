@@ -1951,6 +1951,18 @@ export type SeoFieldsFragment = { __typename: 'ComponentSeo', pageTitle?: string
       & ImageFieldsFragment
     ) | null> } | null };
 
+export type SitemapPagesFieldsFragment = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<{ __typename?: 'PageBlogPost', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null };
+
+export type SitemapPagesQueryVariables = Exact<{
+  locale: Scalars['String']['input'];
+}>;
+
+
+export type SitemapPagesQuery = (
+  { __typename?: 'Query' }
+  & SitemapPagesFieldsFragment
+);
+
 export const NavItemFieldsFragmentDoc = gql`
     fragment NavItemFields on NavItem {
   name
@@ -2110,6 +2122,18 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   }
 }
     `;
+export const SitemapPagesFieldsFragmentDoc = gql`
+    fragment sitemapPagesFields on Query {
+  pageBlogPostCollection(limit: 100, locale: $locale) {
+    items {
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+}
+    `;
 export const FooterItemGroupDocument = gql`
     query footerItemGroup($locale: String, $preview: Boolean) {
   footerItemGroupCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2199,6 +2223,11 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const SitemapPagesDocument = gql`
+    query sitemapPages($locale: String!) {
+  ...sitemapPagesFields
+}
+    ${SitemapPagesFieldsFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -2224,6 +2253,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>(PageBlogPostCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPostCollection', 'query', variables);
+    },
+    sitemapPages(variables: SitemapPagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SitemapPagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SitemapPagesQuery>(SitemapPagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'sitemapPages', 'query', variables);
     }
   };
 }
