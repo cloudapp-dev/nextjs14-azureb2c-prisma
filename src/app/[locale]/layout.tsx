@@ -26,23 +26,29 @@ type LayoutProps = {
   params: { locale: string };
 };
 
-export default async function Layout({ children, params }: LayoutProps) {
+export default async function RootLayout({ children, params }: LayoutProps) {
   const locale = params.locale;
+  const htmlLang = locale === "en-US" ? "en" : "de";
   const headerdata = await getAllNavitemsForHome(locale);
   const footerdata = await getAllFooteritemsForHome(locale);
 
   return (
-    <main className={`${urbanist.variable} font-sans dark:bg-gray900`}>
-      <Providers>
-        <Header menuItems={headerdata} />
-        {draftMode().isEnabled && (
-          <p className="bg-emerald-400 py-4 px-[6vw]">
-            Draft mode is on! <ExitDraftModeLink className="underline" />
-          </p>
-        )}
-        {children}
-        <Footer footerItems={footerdata} />
-      </Providers>
-    </main>
+    <html lang={htmlLang} suppressHydrationWarning>
+      <head></head>
+      <body>
+        <main className={`${urbanist.variable} font-sans dark:bg-gray900`}>
+          <Providers>
+            <Header menuItems={headerdata} />
+            {draftMode().isEnabled && (
+              <p className="bg-emerald-400 py-4 px-[6vw]">
+                Draft mode is on! <ExitDraftModeLink className="underline" />
+              </p>
+            )}
+            {children}
+            <Footer footerItems={footerdata} />
+          </Providers>
+        </main>
+      </body>
+    </html>
   );
 }
