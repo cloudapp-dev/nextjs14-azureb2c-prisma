@@ -70,7 +70,7 @@ export const CtfPicture = ({
       <source media="(max-width: 980px)" srcSet={low} />
       <source media="(min-width: 1280px)" srcSet={medium} />
       <source media="(min-width: 1480px)" srcSet={high} />
-      <img {...rest} />
+      <img alt={title || ""} {...rest} />
     </picture>
   );
 };
