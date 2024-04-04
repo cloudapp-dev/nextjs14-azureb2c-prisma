@@ -19,6 +19,22 @@ export async function generateStaticParams() {
 export const metadata: Metadata = {
   title: "Example Blog",
   description: "Your Example Blog Description",
+  icons: {
+    icon: [
+      { rel: "icon", url: "/favicons/favicon-16x16.png", sizes: "16x16" },
+      new URL("/favicons/favicon-16x16.png", process.env.NEXT_PUBLIC_BASE_URL),
+      { rel: "icon", url: "/favicons/favicon-32x32.png", sizes: "32x32" },
+      new URL("/favicons/favicon-32x32.png", process.env.NEXT_PUBLIC_BASE_URL),
+    ],
+    shortcut: [{ rel: "shortcut icon", url: "/favicons/favicon.ico" }],
+    apple: [
+      {
+        url: "/favicons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
 };
 
 type LayoutProps = {

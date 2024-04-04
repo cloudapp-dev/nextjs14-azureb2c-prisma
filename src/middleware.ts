@@ -45,6 +45,6 @@ export const config = {
    * - favicon.ico (favicon file)
    */
   matcher: [
-    "/((?!api|sitemap.xml|robots.txt|_next/static|_next/image|images|favicon.ico).*)",
+    "/((?!api|sitemap.xml|robots.txt|_next/static|_next/image|favicons|images|favicon.ico).*)",
   ],
 };
