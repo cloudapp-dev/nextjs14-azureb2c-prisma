@@ -16,11 +16,14 @@ CONTENTFUL_ACCESS_TOKEN=xxxx
 CONTENTFUL_PREVIEW_ACCESS_TOKEN=xxxx
 CONTENTFUL_MANAGEMENT_TOKEN=xxxx
 CONTENTFUL_PREVIEW_SECRET=xxxx
+NEXT_PUBLIC_BASE_URL=xxxx
 ```
 
 import data to your contentful space
 
 Check tutorial -> https://www.cloudapp.dev/nextjs14-complete-example-header-footer-tailwindcss-contentful-part3
+
+Check example website -> https://nextjs14-seo.vercel.app/
 
 or simply run this command after the creation of the .env.local file
 
