@@ -33,16 +33,16 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
             {...article.featuredImage}
           />
         )}
-        <div className="flex flex-col flex-1 px-4 py-3 bg-gray100 dark:bg-gray800 md:px-5 md:py-4 lg:px-7 lg:py-5">
+        <div className="flex flex-col flex-1 px-4 py-3 bg--100 dark:bg-gray-800 md:px-5 md:py-4 lg:px-7 lg:py-5">
           {title && (
-            <p className="mb-2 h3 text-gray800 dark:text-[#AEC1CC] md:mb-3">
+            <p className="mb-2 h3 text-gray-800 dark:text-[#AEC1CC] md:mb-3">
               {title}
             </p>
           )}
 
           <div className="flex items-center mt-auto">
             <ArticleAuthor article={article} />
-            <div className={twMerge("ml-auto pl-2 text-xs text-gray600")}>
+            <div className={twMerge("ml-auto pl-2 text-xs text-gray-600")}>
               <FormatDate date={publishedDate} />
             </div>
           </div>

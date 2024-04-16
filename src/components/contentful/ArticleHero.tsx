@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 import { ArticleAuthor } from "@/components/contentful/ArticleAuthor";
-import { CtfImage } from "@/components/contentful/CtfImage.component";
+// import { CtfImage } from "@/components/contentful/CtfImage.component";
 import { CtfPicture } from "@/components/contentful/CtfPicture.component";
 import { FormatDate } from "@/components/contentful/format-date/FormatDate";
 import { PageBlogPostFieldsFragment } from "@/lib/__generated/sdk";
@@ -44,7 +44,7 @@ export const ArticleHero = ({
 
           <div
             className={twMerge(
-              "ml-auto hidden pl-2 text-md text-gray600",
+              "ml-auto hidden pl-2 text-md text-gray-600",
               isReversedLayout ? "lg:block" : ""
             )}
           >
@@ -58,7 +58,7 @@ export const ArticleHero = ({
         )}
         <div
           className={twMerge(
-            "mt-2 text-md text-gray600",
+            "mt-2 text-md text-gray-600",
             isReversedLayout ? "lg:hidden" : ""
           )}
         >

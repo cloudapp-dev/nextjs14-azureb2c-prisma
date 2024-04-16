@@ -100,7 +100,7 @@ export async function generateMetadata(
     },
     openGraph: {
       type: "website",
-      siteName: "CloudApp.dev - Free Tutorials and Resources for Developers",
+      siteName: "Example.dev - Free Tutorials and Resources for Developers",
       locale: params.locale,
       url: url || "",
 
@@ -159,10 +159,10 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
       },
       publisher: {
         "@type": "Organization",
-        name: "CloudApp.dev - Free Tutorials and Resources for Developers",
+        name: "Example.dev - Free Tutorials and Resources for Developers",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.cloudapp.dev/favicons/icon-192x192.png",
+          url: "https://www.example.dev/favicons/icon-192x192.png",
         },
       },
       image: blogPost?.featuredImage?.url || undefined,

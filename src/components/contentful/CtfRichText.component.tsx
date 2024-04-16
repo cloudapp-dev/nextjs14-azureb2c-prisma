@@ -52,7 +52,7 @@ export const contentfulBaseRichTextOptions = ({
       if (node.data.uri.includes("https://")) {
         return (
           <a
-            className="text-blue500 underline hover:text-blue700"
+            className="text-blue-500 underline hover:text-blue-700"
             target="_blank"
             rel="noopener noreferrer"
             href={node.data.uri}
@@ -87,7 +87,7 @@ export const contentfulBaseRichTextOptions = ({
                 nextImageProps={{
                   className: twMerge(
                     "mt-0 mb-0 ",
-                    "rounded-2xl border border-gray300 shadow-lg"
+                    "rounded-2xl border border-gray-300 shadow-lg"
                   ),
                 }}
                 {...asset}

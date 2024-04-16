@@ -10,7 +10,7 @@ export const ArticleAuthor = ({ article }: ArticleAuthorProps) => {
 
   return (
     <div className="flex items-center">
-      <div className="mr-2 overflow-hidden border rounded-full border-blue500">
+      <div className="mr-2 overflow-hidden border rounded-full border-blue-500">
         {author?.avatar && (
           <CtfImage
             nextImageProps={{
@@ -23,7 +23,7 @@ export const ArticleAuthor = ({ article }: ArticleAuthorProps) => {
           />
         )}
       </div>
-      <span className="text-xs leading-none text-gray600">{author?.name}</span>
+      <span className="text-xs leading-none text-gray-600">{author?.name}</span>
     </div>
   );
 };

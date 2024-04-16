@@ -4,30 +4,30 @@
 
 @layer base {
   body {
-    @apply text-sm dark:text-gray400 text-gray800 md:text-sm;
+    @apply text-sm dark:text-gray-400 text-gray-800 md:text-sm;
   }
 
   .h1,
   h1 {
-    @apply text-xl font-semibold dark:text-[#FAFAFA] text-gray600 leading-tighter md:text-4xl;
+    @apply text-xl font-semibold dark:text-[#FAFAFA] text-gray-600 leading-tighter md:text-4xl;
   }
 
   .h2,
   h2 {
-    @apply text-xl font-semibold leading-tight dark:text-[#FAFAFA] text-gray600 md:text-3xl;
+    @apply text-xl font-semibold leading-tight dark:text-[#FAFAFA] text-gray-600 md:text-3xl;
   }
 
   .h3,
   h3 {
-    @apply text-base font-semibold leading-relaxed dark:text-[#FAFAFA] text-gray600 md:text-xl;
+    @apply text-base font-semibold leading-relaxed dark:text-[#FAFAFA] text-gray-600 md:text-xl;
   }
 
   .h4,
   h4 {
-    @apply text-xs font-semibold leading-normal dark:text-[#FAFAFA] text-gray600 md:text-base;
+    @apply text-xs font-semibold leading-normal dark:text-[#FAFAFA] text-gray-600 md:text-base;
   }
 
   p {
-    @apply text-xl leading-normal dark:text-[#FAFAFA] text-gray600 tracking-snug md:leading-normal;
+    @apply text-xl leading-normal dark:text-[#FAFAFA] text-gray-600 tracking-snug md:leading-normal;
   }
 }
