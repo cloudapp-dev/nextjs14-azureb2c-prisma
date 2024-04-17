@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
 import { draftMode } from "next/headers";
+import "instantsearch.css/themes/satellite-min.css";
 import "@/app/globals.css";
 import Header from "@/components/header/header.component";
 import Footer from "@/components/footer/footer.component";
@@ -52,9 +53,9 @@ export default async function RootLayout({ children, params }: LayoutProps) {
     <html lang={htmlLang} suppressHydrationWarning>
       <head></head>
       <body>
-        <main className={`${urbanist.variable} font-sans dark:bg-gray900`}>
+        <main className={`${urbanist.variable} font-sans dark:bg-gray-900`}>
           <Providers>
-            <Header menuItems={headerdata} />
+            <Header showBar={true} menuItems={headerdata} />
             {draftMode().isEnabled && (
               <p className="bg-emerald-400 py-4 px-[6vw]">
                 Draft mode is on! <ExitDraftModeLink className="underline" />

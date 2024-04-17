@@ -5,6 +5,12 @@ fragment ReferencePageBlogPostFields on PageBlogPost {
     spaceId
     publishedAt
   }
+  contentfulMetadata {
+    tags {
+      id
+      name
+    }
+  }
   slug
   author {
     ...AuthorFields
@@ -23,6 +29,12 @@ fragment PageBlogPostFields on PageBlogPost {
     id
     spaceId
     publishedAt
+  }
+  contentfulMetadata {
+    tags {
+      id
+      name
+    }
   }
   internalName
   seoFields {
