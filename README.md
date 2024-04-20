@@ -30,7 +30,7 @@ import data to your contentful space
 
 Check tutorial -> https://medium.com/@cloudapp_dev/algolia-next-js-14-easy-integration-as-on-site-search-at-no-cost-4d0b785559b3
 
-Check example website -> https://nextjs14-algolia-search.vercel.app/
+Check example website ->
 
 or simply run this command after the creation of the .env.local file
 
