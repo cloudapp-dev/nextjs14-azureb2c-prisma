@@ -21,7 +21,7 @@ export const ArticleHero = ({
   return (
     <div
       className={twMerge(
-        `flex flex-col mt-5 overflow-hidden shadow-lg dark:shadow-white dark:shadow-sm-light `,
+        `flex flex-col mt-5 overflow-hidden shadow-lg dark:shadow-white dark:shadow-sm-light`,
         isReversedLayout ? "lg:flex-row-reverse" : "lg:flex-row"
       )}
     >

@@ -27,7 +27,7 @@ interface Linkitems {
   href: string;
 }
 
-export default function Navbar({ menuItems }: any) {
+export default function Navbar({ menuItems, logourl }: any) {
   // Internationalization
   const locale = useParams()?.locale as LocaleTypes;
   const pathname = usePathname();
@@ -89,7 +89,7 @@ export default function Navbar({ menuItems }: any) {
             <Link className="flex items-center" href={`/${locale}/`}>
               <Image
                 className="block float-left w-auto h-12 lg:hidden dark:bg-blue-100"
-                src="/images/svgrepo-com.svg"
+                src={logourl ? logourl : "/images/svgrepo-com.svg"}
                 alt="Testblog"
                 width={48}
                 height={48}
@@ -97,7 +97,7 @@ export default function Navbar({ menuItems }: any) {
 
               <Image
                 className="hidden float-left w-auto h-12 lg:block dark:bg-blue-100"
-                src="/images/svgrepo-com.svg"
+                src={logourl ? logourl : "/images/svgrepo-com.svg"}
                 alt="Testblog"
                 width={48}
                 height={48}

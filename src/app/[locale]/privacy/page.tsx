@@ -1,26 +1,14 @@
 import { client } from "@/lib/client";
-import { notFound } from "next/navigation";
-import { ArticleHero } from "@/components/contentful/ArticleHero";
-import { ArticleTileGrid } from "@/components/contentful/ArticleTileGrid";
-import { Container } from "@/components/contentful/container/Container";
 import { draftMode } from "next/headers";
-// Internationalization
-import { locales, LocaleTypes } from "@/app/i18n/settings";
-import { createTranslation } from "@/app/i18n/server";
+import { Metadata, ResolvingMetadata } from "next";
+import { LandingContent } from "@/components/contentful/ArticleContentLanding";
+import { notFound } from "next/navigation";
+import { Container } from "@/components/contentful/container/Container";
+import { TextHighLight } from "@/components/contentful/TextHighLight";
 //SEO - JSON-LD
 import { Article, WithContext } from "schema-dts";
 import path from "path";
 import Script from "next/script";
-import { Metadata, ResolvingMetadata } from "next";
-// New Fields Part 9 of tutorial
-import { PageBlogPostOrder } from "@/lib/__generated/sdk";
-import { TextHighLight } from "@/components/contentful/TextHighLight";
-import { revalidateDuration } from "@/utils/constants";
-import { TagCloudSimpleHome } from "@/components/search/tagcloudsimpleHome.component";
-import Link from "next/link";
-import { LandingContent } from "@/components/contentful/ArticleContentLanding";
-
-export const revalidate = revalidateDuration; // revalidate at most every hour
 
 interface PageParams {
   slug: string;
@@ -35,11 +23,12 @@ const generateUrl = (locale: string, slug: string) => {
   if (locale === "en-US") {
     return new URL(slug, process.env.NEXT_PUBLIC_BASE_URL!).toString();
   } else {
-    return new URL(locale, process.env.NEXT_PUBLIC_BASE_URL!).toString();
+    return new URL(
+      locale + "/" + slug,
+      process.env.NEXT_PUBLIC_BASE_URL!
+    ).toString();
   }
 };
-
-const WebUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
 export async function generateMetadata(
   { params }: PageProps,
@@ -47,7 +36,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const [PagedataSeo] = await Promise.all([
     client.pageLanding({
-      slug: "/",
+      slug: "privacy",
       locale: params.locale.toString(),
       preview: draftMode().isEnabled,
     }),
@@ -59,7 +48,9 @@ export async function generateMetadata(
     return notFound();
   }
 
-  const url = generateUrl(params.locale || "", "");
+  const url = generateUrl(params.locale || "", params.slug || "");
+
+  const WebUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
   return {
     title: landingPage.seoFields?.pageTitle,
@@ -103,13 +94,13 @@ export async function generateMetadata(
   };
 }
 
-async function Home({ params }: PageProps) {
+async function LegalPrivacy({ params }: PageProps) {
   const { isEnabled } = draftMode();
   //declare JSON-LD schema
   let jsonLd: WithContext<Article> = {} as WithContext<Article>;
   const [landingPageData] = await Promise.all([
     client.pageLanding({
-      slug: "/",
+      slug: "privacy",
       locale: params.locale.toString(),
       preview: isEnabled,
     }),
@@ -117,43 +108,13 @@ async function Home({ params }: PageProps) {
 
   const page = landingPageData.pageLandingCollection?.items[0];
 
+  const seoItem = page?.seoFields?.shareImagesCollection?.items[0];
+
   if (!page) {
     // If a blog post can't be found,
     // tell Next.js to render a 404 page.
     return notFound();
   }
-
-  // TagCloud
-  const showTagCloud = page.showTagCloud === "Yes";
-
-  let { datanew, minSize, maxSize } = {
-    datanew: [],
-    minSize: 0,
-    maxSize: 0,
-  };
-
-  if (showTagCloud) {
-    const searchFacets = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/facets`,
-      {}
-    ).then((res) => res.json());
-
-    maxSize = searchFacets.maxSize;
-    minSize = searchFacets.minSize;
-    datanew = searchFacets.datanew;
-  }
-
-  // Getting BlogPosts
-  const blogPostsData = await client.pageBlogPostCollection({
-    limit: 12,
-    locale: params.locale.toString(),
-    preview: isEnabled,
-    order: PageBlogPostOrder.PublishedDateDesc,
-    where: {
-      slug_not: page?.featuredBlogPost?.slug,
-    },
-  });
-  const posts = blogPostsData.pageBlogPostCollection?.items;
 
   // Create JSON-LD schema only if blogPost is available
   if (page) {
@@ -181,18 +142,13 @@ async function Home({ params }: PageProps) {
           url: "https://www.example.dev/favicons/icon-192x192.png",
         },
       },
-      image: page?.featuredBlogPost?.featuredImage?.url || undefined,
+      image: seoItem?.url || undefined,
       datePublished: page.sys.firstPublishedAt,
       dateModified: page.sys.publishedAt,
     };
   }
 
-  // Internationalization, get the translation function
-  const { t } = await createTranslation(params.locale as LocaleTypes, "common");
-
   const highLightHeadings: any = page.textHighlightCollection?.items[0];
-
-  if (!page?.featuredBlogPost || !posts) return;
 
   return (
     <>
@@ -207,38 +163,10 @@ async function Home({ params }: PageProps) {
       )}
       <Container className="mt-5">
         {highLightHeadings && <TextHighLight headings={highLightHeadings} />}
-
-        {showTagCloud && datanew.length > 0 && (
-          <TagCloudSimpleHome
-            datanew={datanew}
-            minSize={minSize * 10}
-            maxSize={maxSize * 5}
-            locale={params.locale.toString()}
-            source={"homepage"}
-          />
-        )}
-
-        <Link
-          href={`/${params.locale.toString()}/${page.featuredBlogPost.slug}`}
-        >
-          <ArticleHero article={page.featuredBlogPost} isHomePage={true} />
-        </Link>
-        <div className="md:mx-24 md:my-24 sm:mx-16 sm:my-16">
-          <LandingContent landing={page} />
-        </div>
-      </Container>
-
-      <Container className="my-8 md:mb-10 lg:mb-16">
-        {posts.length > 0 && (
-          <h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
-        )}
-        <ArticleTileGrid
-          className="md:grid-cols-2 lg:grid-cols-3"
-          articles={posts}
-        />
+        <LandingContent landing={page} />
       </Container>
     </>
   );
 }
 
-export default Home;
+export default LegalPrivacy;

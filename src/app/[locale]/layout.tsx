@@ -10,6 +10,7 @@ import getAllNavitemsForHome from "@/components/header/navbar.menuitems.componen
 import getAllFooteritemsForHome from "@/components/footer/footer.menuitems.component";
 import ExitDraftModeLink from "@/components/header/draftmode/ExitDraftModeLink.component";
 import { locales } from "@/app/i18n/settings";
+import { client } from "@/lib/client";
 
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
@@ -49,13 +50,24 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   const headerdata = await getAllNavitemsForHome(locale);
   const footerdata = await getAllFooteritemsForHome(locale);
 
+  // Get the landing page data for the logo
+  const { isEnabled } = draftMode();
+  const landingPageData = await client.pageLanding({
+    locale,
+    preview: isEnabled,
+    slug: "/",
+  });
+  const page = landingPageData.pageLandingCollection?.items[0];
+
+  const logourl = page?.logo?.url || "";
+
   return (
     <html lang={htmlLang} suppressHydrationWarning>
       <head></head>
       <body>
         <main className={`${urbanist.variable} font-sans dark:bg-gray-900`}>
           <Providers>
-            <Header showBar={true} menuItems={headerdata} />
+            <Header showBar={true} menuItems={headerdata} logourl={logourl} />
             {draftMode().isEnabled && (
               <p className="bg-emerald-400 py-4 px-[6vw]">
                 Draft mode is on! <ExitDraftModeLink className="underline" />

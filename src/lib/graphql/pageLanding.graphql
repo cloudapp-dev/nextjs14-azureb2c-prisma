@@ -1,0 +1,55 @@
+fragment PageLandingFields on PageLanding {
+  __typename
+  sys {
+    id
+    spaceId
+    publishedAt
+    firstPublishedAt
+  }
+  contentfulMetadata {
+    tags {
+      id
+      name
+    }
+  }
+  internalName
+  slug
+  logo {
+    url
+  }
+  showTagCloud
+  content {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  seoFields {
+    ...SeoFields
+  }
+  featuredBlogPost {
+    ...ReferencePageBlogPostFields
+  }
+  textHighlightCollection {
+    items {
+      ...TextHighlightFields
+    }
+  }
+}
+
+query pageLanding($slug: String!, $locale: String, $preview: Boolean) {
+  pageLandingCollection(
+    limit: 1
+    locale: $locale
+    where: { slug: $slug }
+    preview: $preview
+  ) {
+    items {
+      ...PageLandingFields
+    }
+  }
+}

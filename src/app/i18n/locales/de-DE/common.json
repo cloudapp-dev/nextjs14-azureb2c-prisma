@@ -6,6 +6,9 @@
     "en": "Englisch",
     "de": "Deutsch"
   },
+  "landingPage": {
+    "latestArticles": "Neueste Posts"
+  },
   "search": {
     "button": "Suche",
     "searchResults": "Suchergebnisse",

@@ -21,6 +21,7 @@ export interface ContentfulRichTextInterface {
         };
       }
     | any;
+  source: string;
 }
 
 function getFileName(text: string) {
@@ -101,8 +102,12 @@ export const contentfulBaseRichTextOptions = ({
   },
 });
 
-export const CtfRichText = ({ json, links }: ContentfulRichTextInterface) => {
-  const baseOptions = contentfulBaseRichTextOptions({ links, json });
+export const CtfRichText = ({
+  json,
+  links,
+  source,
+}: ContentfulRichTextInterface) => {
+  const baseOptions = contentfulBaseRichTextOptions({ links, json, source });
   if (!json) return null; // IF there is no content, return null
 
   return (

@@ -1,0 +1,15 @@
+fragment TextHighlightFields on ComponentTextHighlight {
+  __typename
+  name
+  content {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+  styling
+}

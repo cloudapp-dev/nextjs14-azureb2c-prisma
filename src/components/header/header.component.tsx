@@ -4,14 +4,15 @@ import SearchBar from "./search.component";
 interface HeaderProps {
   showBar: boolean;
   menuItems: any;
+  logourl: string;
 }
 
-export default function Header({ showBar, menuItems }: HeaderProps) {
+export default function Header({ showBar, menuItems, logourl }: HeaderProps) {
   return (
     <header>
       {/* <DarkModeButton /> */}
       {/* <NavbarBanner /> */}
-      <Navbar menuItems={menuItems} />
+      <Navbar menuItems={menuItems} logourl={logourl} />
       {showBar && (
         <SearchBar
           searchCta="Search"

@@ -50,7 +50,7 @@ export default function Footer({ footerItems }: any) {
       <li key={index}>
         <a
           href={item.href}
-          className="text-base text-gray-500 hover:text-gray-900"
+          className="text-base text-gray-500 dark:hover:text-white hover:text-gray-900"
         >
           {item.name}
         </a>
