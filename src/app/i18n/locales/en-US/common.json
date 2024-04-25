@@ -2,6 +2,11 @@
   "blog": {
     "relatedArticles": "Related articles"
   },
+  "article": {
+    "relatedArticles": "Related articles",
+    "featured": "featured",
+    "toc": "Table of Contents"
+  },
   "languages": {
     "en": "English",
     "de": "German"
@@ -20,5 +25,9 @@
     "dashboardsearchhighline": "Users",
     "dashboardsearchdescription": "Search for Users for Profile edit",
     "searchdescription": "Below you will find all available Tags and your search results on ..."
+  },
+  "copybutton": {
+    "beforeclick": "Copy",
+    "afterclick": "Copied"
   }
 }

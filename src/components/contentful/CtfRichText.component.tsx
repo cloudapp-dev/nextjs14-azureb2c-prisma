@@ -5,7 +5,9 @@ import {
 import { BLOCKS, MARKS, Document, INLINES } from "@contentful/rich-text-types";
 import { ArticleImage } from "@/components/contentful/ArticleImage.component";
 import { ComponentRichImage } from "@/lib/__generated/sdk";
-import { CtfImage } from "@/components/contentful/CtfImage.component";
+import { CopyButton } from "@/components/contentful/ArticleCodeCopy";
+import { Toc } from "@/components/contentful/ArticleToc";
+import { ArticleTocItem } from "@/components/contentful/ArticleTocItem";
 import { CtfPicture } from "@/components/contentful/CtfPicture.component";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
@@ -44,6 +46,33 @@ export const contentfulBaseRichTextOptions = ({
     [MARKS.BOLD]: (text) => {
       return <b key={`${text}-key`}>{text}</b>;
     },
+    [MARKS.CODE]: (text: any) => {
+      let markedfilename = undefined;
+      let showCodeText = text.toString() || "";
+      const filename = getFileName(text.toString())[1];
+      if (filename) {
+        markedfilename = "#" + filename + "#";
+        showCodeText = text.toString().replace(markedfilename, "");
+        showCodeText = showCodeText.replace("##", "");
+      }
+      return (
+        <pre>
+          <div className="mb-3">
+            {" "}
+            <CopyButton text={text} />
+          </div>
+          <code key={`${text}-key`}>
+            {markedfilename && (
+              <span className="inline-block px-1 py-1 text-base text-white bg-[#3c4f6a] rounded-lg">
+                {markedfilename}
+              </span>
+            )}
+            {showCodeText}
+            {/* {text.toString().replace(markedfilename, "")} */}
+          </code>
+        </pre>
+      );
+    },
     [MARKS.ITALIC]: (text) => {
       return <i key={`${text}-key`}>{text}</i>;
     },
@@ -64,6 +93,9 @@ export const contentfulBaseRichTextOptions = ({
       }
 
       return <Link href={node.data.uri}>{children}</Link>;
+    },
+    [BLOCKS.HEADING_2]: (node, children: any) => {
+      return <ArticleTocItem dynamicId={children[0]} heading={children[0]} />;
     },
 
     [BLOCKS.EMBEDDED_ENTRY]: (node) => {
@@ -109,9 +141,18 @@ export const CtfRichText = ({
 }: ContentfulRichTextInterface) => {
   const baseOptions = contentfulBaseRichTextOptions({ links, json, source });
   if (!json) return null; // IF there is no content, return null
+  const jsoncontent: any = json.content;
+  const headings: string[] = [];
 
+  jsoncontent.map((item: any) => {
+    if (item.nodeType === "heading-2") {
+      const headingvalue: any = item.content[0].value;
+      headings.push(headingvalue);
+    }
+  });
   return (
     <article className="prose prose-lg max-w-none">
+      {source === "article" && <Toc headings={headings} />}
       {documentToReactComponents(json, baseOptions)}
     </article>
   );

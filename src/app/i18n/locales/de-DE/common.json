@@ -2,6 +2,11 @@
   "blog": {
     "relatedArticles": "Verwandte Artikel"
   },
+  "article": {
+    "relatedArticles": "Verwandte Artikel",
+    "featured": "Highlight",
+    "toc": "Inhaltsverzeichnis"
+  },
   "languages": {
     "en": "Englisch",
     "de": "Deutsch"
@@ -20,5 +25,9 @@
     "dashboardsearchhighline": "Benutzer",
     "dashboardsearchdescription": "Suchen Sie nach Benutzern, um deren Profile anzuzeigen und zu verwalten.",
     "searchdescription": "Nachfolgend finden Sie alle verfügbaren Tags und Ihre Suchergebnisse auf ..."
+  },
+  "copybutton": {
+    "beforeclick": "Kopieren",
+    "afterclick": "Kopiert"
   }
 }
