@@ -6,7 +6,11 @@ import type { LocaleTypes } from "@/app/i18n/settings";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
-export const Toc = ({ headings }) => {
+interface TocProps {
+  headings: string[];
+}
+
+export const Toc = ({ headings }: TocProps) => {
   const locale = useParams()?.locale as LocaleTypes;
   const { t } = useTranslation(locale, "common");
   // const [isOpen, setIsOpen] = useState(false);

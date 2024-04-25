@@ -5,7 +5,11 @@ import type { LocaleTypes } from "@/app/i18n/settings";
 import { useTranslation } from "@/app/i18n/client";
 import { useParams } from "next/navigation";
 
-export const CopyButton = ({ text }) => {
+interface CopyButtonProps {
+  text: string;
+}
+
+export const CopyButton = ({ text }: CopyButtonProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const locale = useParams()?.locale as LocaleTypes;
   const { t } = useTranslation(locale, "common");
