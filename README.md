@@ -28,7 +28,7 @@ NEXT_PUBLIC_ALGOLIA_INDEX_NAME=xxxx
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/contentful-nextjs14-easy-creation-integration-of-new-content-types-for-landing-pages
+Check tutorial -> https://www.cloudapp.dev/nextjs-14-easy-creation-of-a-beautiful-toc-and-code-block-highlight-and-copy-function
 
 Check example website ->
 
