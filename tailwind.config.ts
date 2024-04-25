@@ -1,19 +1,5 @@
 import type { Config } from "tailwindcss";
-import tokens from "@contentful/f36-tokens";
 const { fontFamily } = require("tailwindcss/defaultTheme");
-const extraColors = require("tailwindcss/colors"); //for extra colors e.g. in the Arctile TOC -> emerald
-
-const colors = Object.entries(tokens).reduce(
-  (acc: Record<string, any>, [key, value]) => {
-    // Filter Hex colors from the f36-tokens
-    if (/^#[0-9A-F]{6}$/i.test(value as any)) {
-      acc[key] = value;
-    }
-
-    return acc;
-  },
-  {} as Record<string, string>
-);
 
 const config: Config = {
   darkMode: "class",
@@ -22,14 +8,15 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors,
+    // extraColors,
     extend: {
-      colors: {
-        emerald: extraColors.emerald,
-        white: extraColors.white,
-        black: extraColors.black,
-        indigo: extraColors.indigo,
-      },
+      // colors: {
+      //   emerald: extraColors.emerald,
+      //   white: extraColors.white,
+      //   black: extraColors.black,
+      //   indigo: extraColors.indigo,
+      //   pink: extraColors.pink,
+      // },
       maxWidth: {
         "8xl": "90rem",
       },

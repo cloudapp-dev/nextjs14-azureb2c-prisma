@@ -5,5 +5,20 @@
   "languages": {
     "en": "Englisch",
     "de": "Deutsch"
+  },
+  "landingPage": {
+    "latestArticles": "Neueste Posts"
+  },
+  "search": {
+    "button": "Suche",
+    "searchResults": "Suchergebnisse",
+    "searchResultsFor": "Suchergebnisse für",
+    "noResultsFound": "Keine Ergebnisse gefunden",
+    "resultsFoundIn": "Ergebnisse gefunden in",
+    "searchPlaceholder": "Suchen auf Example.dev...",
+    "dashboardsearchplaceholder": "Suchen nach Benutzern/Rollen auf ...",
+    "dashboardsearchhighline": "Benutzer",
+    "dashboardsearchdescription": "Suchen Sie nach Benutzern, um deren Profile anzuzeigen und zu verwalten.",
+    "searchdescription": "Nachfolgend finden Sie alle verfügbaren Tags und Ihre Suchergebnisse auf ..."
   }
 }

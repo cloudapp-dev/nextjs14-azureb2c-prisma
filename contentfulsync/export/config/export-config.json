@@ -1,5 +1,5 @@
 {
   "exportDir": "contentfulsync",
   "contentFile": "export.json",
-  "downloadAssets": false
+  "downloadAssets": true
 }

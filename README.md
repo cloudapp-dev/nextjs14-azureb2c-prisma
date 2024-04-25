@@ -11,16 +11,26 @@ npm i
 Create .env.local file (use .env.local.example and rename it) and add the needed env-values
 
 ```bash
-CONTENTFUL_SPACE_ID=xxxx
+ONTENTFUL_SPACE_ID=xxxx
 CONTENTFUL_ACCESS_TOKEN=xxxx
 CONTENTFUL_PREVIEW_ACCESS_TOKEN=xxxx
 CONTENTFUL_MANAGEMENT_TOKEN=xxxx
 CONTENTFUL_PREVIEW_SECRET=xxxx
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+# Api Key for Route Auth
+API_KEY=xxxx
+# Api Keys for Algolia
+NEXT_PUBLIC_ALGOLIA_APP_ID=xxxx
+ALGOLIA_MASTER_KEY=xxxx
+NEXT_PUBLIC_ALGOLIA_APP_ID=xxxx
+NEXT_PUBLIC_ALGOLIA_INDEX_NAME=xxxx
 ```
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/nextjs14-complete-example-header-footer-tailwindcss-contentful-part3
+Check tutorial -> https://www.cloudapp.dev/contentful-nextjs14-easy-creation-integration-of-new-content-types-for-landing-pages
+
+Check example website ->
 
 or simply run this command after the creation of the .env.local file
 

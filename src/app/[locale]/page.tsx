@@ -1,4 +1,3 @@
-import { ArticleContent } from "@/components/contentful/ArticleContent.component";
 import { client } from "@/lib/client";
 import { notFound } from "next/navigation";
 import { ArticleHero } from "@/components/contentful/ArticleHero";
@@ -13,6 +12,15 @@ import { Article, WithContext } from "schema-dts";
 import path from "path";
 import Script from "next/script";
 import { Metadata, ResolvingMetadata } from "next";
+// New Fields Part 9 of tutorial
+import { PageBlogPostOrder } from "@/lib/__generated/sdk";
+import { TextHighLight } from "@/components/contentful/TextHighLight";
+import { revalidateDuration } from "@/utils/constants";
+import { TagCloudSimpleHome } from "@/components/search/tagcloudsimpleHome.component";
+import Link from "next/link";
+import { LandingContent } from "@/components/contentful/ArticleContentLanding";
+
+export const revalidate = revalidateDuration; // revalidate at most every hour
 
 interface PageParams {
   slug: string;
@@ -37,25 +45,25 @@ export async function generateMetadata(
   { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const [blogPagedataSeo] = await Promise.all([
-    client.pageBlogPost({
+  const [PagedataSeo] = await Promise.all([
+    client.pageLanding({
       slug: "/",
       locale: params.locale.toString(),
       preview: draftMode().isEnabled,
     }),
   ]);
 
-  const blogPost = blogPagedataSeo.pageBlogPostCollection?.items[0];
+  const landingPage = PagedataSeo.pageLandingCollection?.items[0];
 
-  if (!blogPost) {
+  if (!landingPage) {
     return notFound();
   }
 
   const url = generateUrl(params.locale || "", "");
 
   return {
-    title: blogPost.seoFields?.pageTitle,
-    description: blogPost.seoFields?.pageDescription,
+    title: landingPage.seoFields?.pageTitle,
+    description: landingPage.seoFields?.pageDescription,
     metadataBase: new URL(WebUrl),
     alternates: {
       canonical: url,
@@ -67,23 +75,25 @@ export async function generateMetadata(
     },
     openGraph: {
       type: "website",
-      siteName: "CloudApp.dev - Free Tutorials and Resources for Developers",
+      siteName: "Example.dev - Free Tutorials and Resources for Developers",
       locale: params.locale,
       url: url || "",
 
-      title: blogPost.seoFields?.pageTitle || undefined,
-      description: blogPost.seoFields?.pageDescription || undefined,
-      images: blogPost.seoFields?.shareImagesCollection?.items.map((item) => ({
-        url: item?.url || "",
-        width: item?.width || 0,
-        height: item?.height || 0,
-        alt: item?.description || "",
-        type: item?.contentType || "",
-      })),
+      title: landingPage.seoFields?.pageTitle || undefined,
+      description: landingPage.seoFields?.pageDescription || undefined,
+      images: landingPage.seoFields?.shareImagesCollection?.items.map(
+        (item) => ({
+          url: item?.url || "",
+          width: item?.width || 0,
+          height: item?.height || 0,
+          alt: item?.description || "",
+          type: item?.contentType || "",
+        })
+      ),
     },
     robots: {
-      follow: blogPost.seoFields?.follow || false,
-      index: blogPost.seoFields?.index || false,
+      follow: landingPage.seoFields?.follow || false,
+      index: landingPage.seoFields?.index || false,
       googleBot: {
         index: true,
         follow: true,
@@ -93,35 +103,67 @@ export async function generateMetadata(
   };
 }
 
-async function BlogPostPage({ params }: PageProps) {
+async function Home({ params }: PageProps) {
   const { isEnabled } = draftMode();
   //declare JSON-LD schema
   let jsonLd: WithContext<Article> = {} as WithContext<Article>;
-  const [blogPagedata] = await Promise.all([
-    client.pageBlogPost({
+  const [landingPageData] = await Promise.all([
+    client.pageLanding({
       slug: "/",
       locale: params.locale.toString(),
       preview: isEnabled,
     }),
   ]);
 
-  const blogPost = blogPagedata.pageBlogPostCollection?.items[0];
+  const page = landingPageData.pageLandingCollection?.items[0];
 
-  if (!blogPost) {
+  if (!page) {
     // If a blog post can't be found,
     // tell Next.js to render a 404 page.
     return notFound();
   }
 
+  // TagCloud
+  const showTagCloud = page.showTagCloud === "Yes";
+
+  let { datanew, minSize, maxSize } = {
+    datanew: [],
+    minSize: 0,
+    maxSize: 0,
+  };
+
+  if (showTagCloud) {
+    const searchFacets = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/facets`,
+      {}
+    ).then((res) => res.json());
+
+    maxSize = searchFacets.maxSize;
+    minSize = searchFacets.minSize;
+    datanew = searchFacets.datanew;
+  }
+
+  // Getting BlogPosts
+  const blogPostsData = await client.pageBlogPostCollection({
+    limit: 12,
+    locale: params.locale.toString(),
+    preview: isEnabled,
+    order: PageBlogPostOrder.PublishedDateDesc,
+    where: {
+      slug_not: page?.featuredBlogPost?.slug,
+    },
+  });
+  const posts = blogPostsData.pageBlogPostCollection?.items;
+
   // Create JSON-LD schema only if blogPost is available
-  if (blogPost) {
+  if (page) {
     jsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: blogPost?.title || undefined,
+      headline: page?.seoFields?.pageTitle || undefined,
       author: {
         "@type": "Person",
-        name: blogPost.author?.name || undefined,
+        name: page?.featuredBlogPost?.author?.name || undefined,
         // The full URL must be provided, including the website's domain.
         url: new URL(
           path.join(
@@ -133,28 +175,28 @@ async function BlogPostPage({ params }: PageProps) {
       },
       publisher: {
         "@type": "Organization",
-        name: "CloudApp.dev - Free Tutorials and Resources for Developers",
+        name: "Example.dev - Free Tutorials and Resources for Developers",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.cloudapp.dev/favicons/icon-192x192.png",
+          url: "https://www.example.dev/favicons/icon-192x192.png",
         },
       },
-      image: blogPost?.featuredImage?.url || undefined,
-      datePublished: blogPost.publishedDate,
-      dateModified: blogPost.sys.publishedAt,
+      image: page?.featuredBlogPost?.featuredImage?.url || undefined,
+      datePublished: page.sys.firstPublishedAt,
+      dateModified: page.sys.publishedAt,
     };
   }
 
   // Internationalization, get the translation function
   const { t } = await createTranslation(params.locale as LocaleTypes, "common");
 
-  const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
+  const highLightHeadings: any = page.textHighlightCollection?.items[0];
 
-  if (!blogPost || !relatedPosts) return null;
+  if (!page?.featuredBlogPost || !posts) return;
 
   return (
     <>
-      {blogPost && (
+      {page && (
         <Script
           id="article-schema"
           type="application/ld+json"
@@ -163,28 +205,40 @@ async function BlogPostPage({ params }: PageProps) {
           }}
         />
       )}
-      <div className="mt-4" />
-      <Container>
-        <ArticleHero
-          article={blogPost}
-          isReversedLayout={true}
-          isHomePage={false}
+      <Container className="mt-5">
+        {highLightHeadings && <TextHighLight headings={highLightHeadings} />}
+
+        {showTagCloud && datanew.length > 0 && (
+          <TagCloudSimpleHome
+            datanew={datanew}
+            minSize={minSize * 10}
+            maxSize={maxSize * 5}
+            locale={params.locale.toString()}
+            source={"homepage"}
+          />
+        )}
+
+        <Link
+          href={`/${params.locale.toString()}/${page.featuredBlogPost.slug}`}
+        >
+          <ArticleHero article={page.featuredBlogPost} isHomePage={true} />
+        </Link>
+        <div className="md:mx-24 md:my-24 sm:mx-16 sm:my-16">
+          <LandingContent landing={page} />
+        </div>
+      </Container>
+
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        {posts.length > 0 && (
+          <h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
+        )}
+        <ArticleTileGrid
+          className="md:grid-cols-2 lg:grid-cols-3"
+          articles={posts}
         />
       </Container>
-      <Container className="max-w-4xl mt-8">
-        <ArticleContent article={blogPost} />
-      </Container>
-      {relatedPosts.length > 0 && (
-        <Container className="max-w-5xl mt-8">
-          {/* Without internationalization: */}
-          {/* <h2 className="mb-4 md:mb-6">Related Posts</h2> */}
-          {/* With internationalization: */}
-          <h2 className="mb-4 md:mb-6">{t("blog.relatedArticles")}</h2>
-          <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
-        </Container>
-      )}
     </>
   );
 }
 
-export default BlogPostPage;
+export default Home;

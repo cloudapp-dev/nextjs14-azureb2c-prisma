@@ -7,5 +7,7 @@ interface ArticleContentProps {
 export const ArticleContent = ({ article }: ArticleContentProps) => {
   const { content } = article;
 
-  return <CtfRichText json={content?.json} links={content?.links} />;
+  return (
+    <CtfRichText json={content?.json} links={content?.links} source="article" />
+  );
 };

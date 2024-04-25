@@ -5,5 +5,20 @@
   "languages": {
     "en": "English",
     "de": "German"
+  },
+  "landingPage": {
+    "latestArticles": "Latest Posts"
+  },
+  "search": {
+    "button": "Search",
+    "searchResults": "Search Results",
+    "searchResultsFor": "Search Results for",
+    "noResultsFound": "No Results found",
+    "resultsFoundIn": "Results found for",
+    "searchPlaceholder": "Search Example.dev...",
+    "dashboardsearchplaceholder": "Search for User/Roles on ...",
+    "dashboardsearchhighline": "Users",
+    "dashboardsearchdescription": "Search for Users for Profile edit",
+    "searchdescription": "Below you will find all available Tags and your search results on ..."
   }
 }
