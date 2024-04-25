@@ -10,9 +10,10 @@ import getAllNavitemsForHome from "@/components/header/navbar.menuitems.componen
 import getAllFooteritemsForHome from "@/components/footer/footer.menuitems.component";
 import ExitDraftModeLink from "@/components/header/draftmode/ExitDraftModeLink.component";
 import { locales } from "@/app/i18n/settings";
+//Contentful Client
+import { client } from "@/lib/client";
 // Piwik Container
 import PiwikPro from "@/components/analytics/PiwikPro";
-import { client } from "@/lib/client";
 
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
