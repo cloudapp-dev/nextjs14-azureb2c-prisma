@@ -9,6 +9,8 @@ import getAllNavitemsForHome from "@/components/header/navbar.menuitems.componen
 import getAllFooteritemsForHome from "@/components/footer/footer.menuitems.component";
 import ExitDraftModeLink from "@/components/header/draftmode/ExitDraftModeLink.component";
 import { locales } from "@/app/i18n/settings";
+// Piwik Container
+import PiwikPro from "@/components/analytics/PiwikPro";
 
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
@@ -61,6 +63,8 @@ export default async function RootLayout({ children, params }: LayoutProps) {
               </p>
             )}
             {children}
+            {/*PiwikPro */}
+            <PiwikPro />
             <Footer footerItems={footerdata} />
           </Providers>
         </main>
