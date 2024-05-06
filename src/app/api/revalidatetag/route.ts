@@ -42,4 +42,4 @@ export async function OPTIONS(request: NextRequest) {
   });
 }
 
-// then call your-website-url/revalidatetag?secret=xxxxx&url=url/that/needs/to/be/invalidated.
+// then call your-website-url/api/revalidatetag?secret=xxxxx&url=url/that/needs/to/be/invalidated.

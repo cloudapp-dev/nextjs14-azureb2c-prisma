@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`npx create-next-app@13.5.6`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`npx create-next-app@latest`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -11,24 +11,31 @@ npm i
 Create .env.local file (use .env.local.example and rename it) and add the needed env-values
 
 ```bash
-ONTENTFUL_SPACE_ID=xxxx
+# Contentful API Keys
+CONTENTFUL_SPACE_ID=xxxx
 CONTENTFUL_ACCESS_TOKEN=xxxx
 CONTENTFUL_PREVIEW_ACCESS_TOKEN=xxxx
 CONTENTFUL_MANAGEMENT_TOKEN=xxxx
 CONTENTFUL_PREVIEW_SECRET=xxxx
+# Base URL
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 # Api Key for Route Auth
-API_KEY=xxxx
+API_KEY=xxxxxx
 # Api Keys for Algolia
-NEXT_PUBLIC_ALGOLIA_APP_ID=xxxx
-ALGOLIA_MASTER_KEY=xxxx
-NEXT_PUBLIC_ALGOLIA_APP_ID=xxxx
-NEXT_PUBLIC_ALGOLIA_INDEX_NAME=xxxx
+NEXT_PUBLIC_ALGOLIA_API_KEY=xxxx
+ALGOLIA_MASTER_KEY=xxxxx
+NEXT_PUBLIC_ALGOLIA_APP_ID=xxxxx
+NEXT_PUBLIC_ALGOLIA_INDEX_NAME=xxxxx
+# Piwik Analytics & CMP
+NEXT_PUBLIC_PIWIK_PRO_ID=xxxxxx
+NEXT_PUBLIC_PIWIK_CONTAINER_NAME=xxxxx
+# Revalidate Secret
+CONTENTFUL_REVALIDATE_SECRET=xxxxx
 ```
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/nextjs-14-easy-creation-of-a-beautiful-toc-and-code-block-highlight-and-copy-function
+Check tutorial -> https://www.cloudapp.dev/nextjs-14-caching-and-revalidation-real-world-example-with-cms
 
 Check example website ->
 
@@ -52,7 +59,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Or visit the testblog on vercel https://nextjs14-seo.vercel.app/
+Or visit the testblog on vercel https://nextjs14-caching-revalidation.vercel.app
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
