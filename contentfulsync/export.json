@@ -122,7 +122,7 @@
         "id": "pageBlogPost",
         "type": "ContentType",
         "createdAt": "2024-03-08T14:47:40.697Z",
-        "updatedAt": "2024-03-14T17:41:48.681Z",
+        "updatedAt": "2024-05-07T05:51:22.498Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -130,8 +130,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 13,
-        "publishedAt": "2024-03-14T17:41:48.681Z",
+        "publishedVersion": 15,
+        "publishedAt": "2024-05-07T05:51:22.498Z",
         "firstPublishedAt": "2024-03-08T14:47:42.548Z",
         "createdBy": {
           "sys": {
@@ -147,8 +147,8 @@
             "id": "7FLuNcp5oDnApKvaq1pqBW"
           }
         },
-        "publishedCounter": 7,
-        "version": 14,
+        "publishedCounter": 8,
+        "version": 16,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -1286,6 +1286,208 @@
           "omitted": false
         }
       ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "tagPage",
+        "type": "ContentType",
+        "createdAt": "2024-05-07T06:02:34.707Z",
+        "updatedAt": "2024-05-07T06:06:00.831Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2024-05-07T06:06:00.831Z",
+        "firstPublishedAt": "2024-05-07T06:02:35.174Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/content_types/tagPage"
+      },
+      "displayField": "internalName",
+      "name": "🌆 tag page",
+      "description": "",
+      "fields": [
+        {
+          "id": "internalName",
+          "name": "Internal Name",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "unique": true
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "seoFields",
+          "name": "SEO fields",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "linkContentType": [
+                "componentSeo"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Entry"
+        },
+        {
+          "id": "tag",
+          "name": "Tag",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "unique": true
+            },
+            {
+              "in": [
+                "testtag",
+                "testtag2",
+                "testtag3"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "textHighlight",
+          "name": "TextHighlight",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+            {
+              "size": {
+                "max": 3
+              },
+              "message": "To many TextHightLight Entries added (max 3)"
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+              {
+                "linkContentType": [
+                  "componentTextHighlight"
+                ]
+              }
+            ],
+            "linkType": "Entry"
+          }
+        },
+        {
+          "id": "content",
+          "name": "Content",
+          "type": "RichText",
+          "localized": true,
+          "required": false,
+          "validations": [
+            {
+              "enabledMarks": [
+                "bold",
+                "italic",
+                "underline",
+                "code",
+                "superscript",
+                "subscript"
+              ],
+              "message": "Only bold, italic, underline, code, superscript, and subscript marks are allowed"
+            },
+            {
+              "enabledNodeTypes": [
+                "heading-1",
+                "heading-2",
+                "heading-3",
+                "heading-4",
+                "heading-5",
+                "heading-6",
+                "ordered-list",
+                "unordered-list",
+                "hr",
+                "blockquote",
+                "embedded-entry-block",
+                "embedded-asset-block",
+                "table",
+                "hyperlink",
+                "entry-hyperlink",
+                "asset-hyperlink",
+                "embedded-entry-inline"
+              ],
+              "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, table, link to Url, link to entry, link to asset, and inline entry nodes are allowed"
+            },
+            {
+              "nodes": {
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "showTagCloud",
+          "name": "Show Tag Cloud",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "in": [
+                "Yes",
+                "No"
+              ]
+            }
+          ],
+          "defaultValue": {
+            "en-US": "Yes"
+          },
+          "disabled": false,
+          "omitted": false
+        }
+      ]
     }
   ],
   "tags": [
@@ -1528,7 +1730,7 @@
             "linkType": "Space"
           }
         },
-        "version": 15,
+        "version": 17,
         "createdAt": "2024-03-08T14:47:42.768Z",
         "createdBy": {
           "sys": {
@@ -1537,7 +1739,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2024-03-14T17:41:49.377Z",
+        "updatedAt": "2024-05-07T05:51:23.237Z",
         "updatedBy": {
           "sys": {
             "id": "7FLuNcp5oDnApKvaq1pqBW",
@@ -1581,6 +1783,12 @@
         }
       ],
       "sidebar": [
+        {
+          "settings": {
+          },
+          "widgetId": "10ec9foxs591x36kLhTYT2",
+          "widgetNamespace": "app"
+        },
         {
           "settings": {
           },
@@ -2320,6 +2528,82 @@
           "widgetNamespace": "builtin"
         }
       ]
+    },
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "msfu6cxjsfn6",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 6,
+        "createdAt": "2024-05-07T06:02:35.317Z",
+        "createdBy": {
+          "sys": {
+            "id": "7FLuNcp5oDnApKvaq1pqBW",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2024-05-07T06:06:01.527Z",
+        "updatedBy": {
+          "sys": {
+            "id": "7FLuNcp5oDnApKvaq1pqBW",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "tagPage",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "internalName",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "seoFields",
+          "widgetId": "entryLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "tag",
+          "widgetId": "dropdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "textHighlight",
+          "widgetId": "entryLinksEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "content",
+          "widgetId": "richTextEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "showTagCloud",
+          "widgetId": "radio",
+          "widgetNamespace": "builtin"
+        }
+      ]
     }
   ],
   "entries": [
@@ -2587,7 +2871,7 @@
         "id": "5Ffob3XoJGrQuKE5uRUugR",
         "type": "Entry",
         "createdAt": "2024-03-08T14:48:08.419Z",
-        "updatedAt": "2024-04-22T16:47:37.973Z",
+        "updatedAt": "2024-05-06T10:14:29.890Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -2595,8 +2879,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 22,
-        "publishedAt": "2024-04-22T16:47:37.973Z",
+        "publishedVersion": 30,
+        "publishedAt": "2024-05-06T10:14:29.890Z",
         "firstPublishedAt": "2024-03-08T14:48:10.503Z",
         "createdBy": {
           "sys": {
@@ -2612,8 +2896,8 @@
             "id": "7FLuNcp5oDnApKvaq1pqBW"
           }
         },
-        "publishedCounter": 10,
-        "version": 23,
+        "publishedCounter": 14,
+        "version": 31,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -2701,25 +2985,35 @@
             "nodeType": "document"
           },
           "en-US": {
+            "nodeType": "document",
             "data": {
             },
             "content": [
               {
+                "nodeType": "paragraph",
                 "data": {
                 },
                 "content": [
                   {
-                    "data": {
-                    },
+                    "nodeType": "text",
+                    "value": "Two guys",
                     "marks": [
                     ],
-                    "value": "orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus consequat. Integer rhoncus, nulla et sodales bibendum, augue tortor ultrices dolor, id malesuada lectus leo quis ante. Mauris nisl mauris, iaculis ut fermentum non, efficitur quis sem. Donec mattis augue in libero commodo, auctor hendrerit dui lobortis. Phasellus lacinia ornare sapien, vel venenatis arcu pellentesque vel. Quisque id dui in mi mollis posuere. In sed nisl nisl. Aenean vel malesuada arcu, sit amet blandit dui. Pellentesque nec mattis ipsum, vel ultrices quam.",
-                    "nodeType": "text"
+                    "data": {
+                    }
+                  },
+                  {
+                    "nodeType": "text",
+                    "value": " ofrem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus consequat. Integer rhoncus, nulla et sodales bibendum, augue tortor ultrices dolor, id malesuada lectus leo quis ante. Mauris nisl mauris, iaculis ut fermentum non, efficitur quis sem. Donec mattis augue in libero commodo, auctor hendrerit dui lobortis. Phasellus lacinia ornare sapien, vel venenatis arcu pellentesque vel. Quisque id dui in mi mollis posuere. In sed nisl nisl. Aenean vel malesuada arcu, sit amet blandit dui. Pellentesque nec mattis ipsum, vel ultrices quam.",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
                   }
-                ],
-                "nodeType": "paragraph"
+                ]
               },
               {
+                "nodeType": "embedded-entry-block",
                 "data": {
                   "target": {
                     "sys": {
@@ -2730,41 +3024,39 @@
                   }
                 },
                 "content": [
-                ],
-                "nodeType": "embedded-entry-block"
+                ]
               },
               {
+                "nodeType": "paragraph",
                 "data": {
                 },
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "nodeType": "text",
                     "value": "Proin tristique nec leo ac egestas. Sed in facilisis ex. Proin convallis mauris eu tortor aliquam, ut luctus nisi tincidunt. Ut iaculis sed dui eu ultrices. Duis id turpis consectetur, venenatis lorem vitae, maximus dui. Ut euismod est urna, vitae bibendum nisi dapibus in. Nullam laoreet et purus tempus dapibus. Duis viverra mollis tellus, et faucibus eros posuere ut. Nam consectetur dolor quis ex volutpat tristique. Maecenas a ullamcorper velit. Morbi mauris mi, ullamcorper nec mi vitae, vehicula congue urna. Vivamus nec aliquam nisl. Proin dictum maximus lectus, gravida scelerisque quam. Aliquam a magna quam.",
-                    "nodeType": "text"
+                    "marks": [
+                    ],
+                    "data": {
+                    }
                   }
-                ],
-                "nodeType": "paragraph"
+                ]
               },
               {
+                "nodeType": "paragraph",
                 "data": {
                 },
                 "content": [
                   {
-                    "data": {
-                    },
+                    "nodeType": "text",
+                    "value": "Maecenas ornare imperdiet purus, sit amet tristique velit posuere pellentesque. Duis ac venenatis augue. Morbi eu commodo nisi. Sed vehicula ut purus eu mattis. Vestibulum gravida quis orci eget fringilla. Etiam id suscipit mauris, eget venenatis mi. Nullam ornare quam eu imperdiet molestie. Vestibulum libero dolor, consectetur vel placerat vitae, tempor vel orci. Aliquam vel pharetra mi. Nulla nec scelerisque purus.",
                     "marks": [
                     ],
-                    "value": "Maecenas ornare imperdiet purus, sit amet tristique velit posuere pellentesque. Duis ac venenatis augue. Morbi eu commodo nisi. Sed vehicula ut purus eu mattis. Vestibulum gravida quis orci eget fringilla. Etiam id suscipit mauris, eget venenatis mi. Nullam ornare quam eu imperdiet molestie. Vestibulum libero dolor, consectetur vel placerat vitae, tempor vel orci. Aliquam vel pharetra mi. Nulla nec scelerisque purus.",
-                    "nodeType": "text"
+                    "data": {
+                    }
                   }
-                ],
-                "nodeType": "paragraph"
+                ]
               }
-            ],
-            "nodeType": "document"
+            ]
           }
         },
         "relatedBlogPosts": {
@@ -3015,7 +3307,7 @@
         "id": "7pDZ9jGg3vo8elEYooopbv",
         "type": "Entry",
         "createdAt": "2024-03-12T11:30:07.200Z",
-        "updatedAt": "2024-04-22T16:48:06.699Z",
+        "updatedAt": "2024-05-06T10:14:48.432Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -3023,8 +3315,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 29,
-        "publishedAt": "2024-04-22T16:48:06.699Z",
+        "publishedVersion": 45,
+        "publishedAt": "2024-05-06T10:14:48.432Z",
         "firstPublishedAt": "2024-03-12T11:30:16.745Z",
         "createdBy": {
           "sys": {
@@ -3040,8 +3332,8 @@
             "id": "7FLuNcp5oDnApKvaq1pqBW"
           }
         },
-        "publishedCounter": 11,
-        "version": 30,
+        "publishedCounter": 15,
+        "version": 46,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -3119,19 +3411,12 @@
                     },
                     "marks": [
                     ],
-                    "value": "Content DE",
+                    "value": "Test H2 Number One DE",
                     "nodeType": "text"
                   }
                 ],
-                "nodeType": "paragraph"
-              }
-            ],
-            "nodeType": "document"
-          },
-          "en-US": {
-            "data": {
-            },
-            "content": [
+                "nodeType": "heading-2"
+              },
               {
                 "data": {
                 },
@@ -3170,6 +3455,21 @@
                     },
                     "marks": [
                     ],
+                    "value": "Test H2 Number Two DE",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-2"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
                     "value": "Proin tristique nec leo ac egestas. Sed in facilisis ex. Proin convallis mauris eu tortor aliquam, ut luctus nisi tincidunt. Ut iaculis sed dui eu ultrices. Duis id turpis consectetur, venenatis lorem vitae, maximus dui. Ut euismod est urna, vitae bibendum nisi dapibus in. Nullam laoreet et purus tempus dapibus. Duis viverra mollis tellus, et faucibus eros posuere ut. Nam consectetur dolor quis ex volutpat tristique. Maecenas a ullamcorper velit. Morbi mauris mi, ullamcorper nec mi vitae, vehicula congue urna. Vivamus nec aliquam nisl. Proin dictum maximus lectus, gravida scelerisque quam. Aliquam a magna quam.",
                     "nodeType": "text"
                   }
@@ -3185,7 +3485,55 @@
                     },
                     "marks": [
                     ],
+                    "value": "Test H2 Number Three DE",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-2"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
                     "value": "Maecenas ornare imperdiet purus, sit amet tristique velit posuere pellentesque. Duis ac venenatis augue. Morbi eu commodo nisi. Sed vehicula ut purus eu mattis. Vestibulum gravida quis orci eget fringilla. Etiam id suscipit mauris, eget venenatis mi. Nullam ornare quam eu imperdiet molestie. Vestibulum libero dolor, consectetur vel placerat vitae, tempor vel orci. Aliquam vel pharetra mi. Nulla nec scelerisque purus.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Code Block DE",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-2"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ],
+                    "value": "npm run dev",
                     "nodeType": "text"
                   }
                 ],
@@ -3193,6 +3541,150 @@
               }
             ],
             "nodeType": "document"
+          },
+          "en-US": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "heading-2",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Test H2 Number One",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Test orem jhghtest ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices cursus consequat. Integer rhoncus, nulla et sodales bibendum, augue tortor ultrices dolor, id malesuada lectus leo quis ante. Mauris nisl mauris, iaculis ut fermentum non, efficitur quis sem. Donec mattis augue in libero commodo, auctor hendrerit dui lobortis. Phasellus lacinia ornare sapien, vel venenatis arcu pellentesque vel. Quisque id dui in mi mollis posuere. In sed nisl nisl. Aenean vel malesuada arcu, sit amet blandit dui. Pellentesque nec mattis ipsum, vel ultrices quam.",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "embedded-entry-block",
+                "data": {
+                  "target": {
+                    "sys": {
+                      "id": "43wUdTg2SEQFaOomKG6WrE",
+                      "type": "Link",
+                      "linkType": "Entry"
+                    }
+                  }
+                },
+                "content": [
+                ]
+              },
+              {
+                "nodeType": "heading-2",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Test H2 Number Two",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Proin tristique nec leo ac egestas. Sed in facilisis ex. Proin convallis mauris eu tortor aliquam, ut luctus nisi tincidunt. Ut iaculis sed dui eu ultrices. Duis id turpis consectetur, venenatis lorem vitae, maximus dui. Ut euismod est urna, vitae bibendum nisi dapibus in. Nullam laoreet et purus tempus dapibus. Duis viverra mollis tellus, et faucibus eros posuere ut. Nam consectetur dolor quis ex volutpat tristique. Maecenas a ullamcorper velit. Morbi mauris mi, ullamcorper nec mi vitae, vehicula congue urna. Vivamus nec aliquam nisl. Proin dictum maximus lectus, gravida scelerisque quam. Aliquam a magna quam.",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "heading-2",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Test H2 Number Three",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Maecenas ornare imperdiet purus, sit amet tristique velit posuere pellentesque. Duis ac venenatis augue. Morbi eu commodo nisi. Sed vehicula ut purus eu mattis. Vestibulum gravida quis orci eget fringilla. Etiam id suscipit mauris, eget venenatis mi. Nullam ornare quam eu imperdiet molestie. Vestibulum libero dolor, consectetur vel placerat vitae, tempor vel orci. Aliquam vel pharetra mi. Nulla nec scelerisque purus.",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "heading-2",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Code Block",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              },
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "npm run dev",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
           }
         }
       }
@@ -3355,7 +3847,7 @@
         "id": "4BnUS1aG8B1qggOv8hlmUY",
         "type": "Entry",
         "createdAt": "2024-03-18T16:38:09.688Z",
-        "updatedAt": "2024-03-18T16:38:37.210Z",
+        "updatedAt": "2024-05-07T06:41:44.804Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -3363,8 +3855,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 4,
-        "publishedAt": "2024-03-18T16:38:37.210Z",
+        "publishedVersion": 6,
+        "publishedAt": "2024-05-07T06:41:44.804Z",
         "firstPublishedAt": "2024-03-18T16:38:37.210Z",
         "createdBy": {
           "sys": {
@@ -3380,8 +3872,8 @@
             "id": "7FLuNcp5oDnApKvaq1pqBW"
           }
         },
-        "publishedCounter": 1,
-        "version": 5,
+        "publishedCounter": 2,
+        "version": 7,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -3411,6 +3903,13 @@
                 "type": "Link",
                 "linkType": "Entry",
                 "id": "5gjiQ51jch9GQmFfbtDe4K"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "mivCHFq0BMFnXUIqadQcd"
               }
             },
             {
@@ -5202,6 +5701,1031 @@
           "en-US": "text-4xl leading-tight sm:text-5xl sm:font-light sm:leading-[1.25] sm:tracking-widest"
         }
       }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "mivCHFq0BMFnXUIqadQcd",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:40:59.122Z",
+        "updatedAt": "2024-05-07T06:41:10.112Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2024-05-07T06:41:10.112Z",
+        "firstPublishedAt": "2024-05-07T06:41:10.112Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "navItem"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/mivCHFq0BMFnXUIqadQcd"
+      },
+      "fields": {
+        "name": {
+          "de-DE": "Tags",
+          "en-US": "Tags"
+        },
+        "href": {
+          "en-US": "/tags"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "testtag"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "testtag2"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "testtag3"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "7007nrKPEzKpSIat5Y7Bka",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:45:56.735Z",
+        "updatedAt": "2024-05-07T06:48:50.246Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 11,
+        "publishedAt": "2024-05-07T06:48:50.246Z",
+        "firstPublishedAt": "2024-05-07T06:47:52.102Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 3,
+        "version": 12,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "pageLanding"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/7007nrKPEzKpSIat5Y7Bka"
+      },
+      "fields": {
+        "internalName": {
+          "en-US": "Tags"
+        },
+        "slug": {
+          "en-US": "tags"
+        },
+        "seoFields": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "EfYAMFXsqAjCLsFJZFB2m"
+            }
+          }
+        },
+        "textHighlight": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "64N0hdXB5NbKSOB1f68LpB"
+              }
+            }
+          ]
+        },
+        "content": {
+          "de-DE": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Unlock the full potential of modern web development with our comprehensive guides, seamlessly integrating Node.js, Next.js, TailwindCSS, GraphQL, Contentful, and even more state-of-the-art technologies.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          },
+          "en-US": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Unlock the full potential of modern web development with our comprehensive guides, seamlessly integrating Node.js, Next.js, TailwindCSS, GraphQL, Contentful, and even more state-of-the-art technologies.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        },
+        "showTagCloud": {
+          "en-US": "Yes"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "64N0hdXB5NbKSOB1f68LpB",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:46:24.398Z",
+        "updatedAt": "2024-05-07T06:49:34.870Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 8,
+        "publishedAt": "2024-05-07T06:49:34.870Z",
+        "firstPublishedAt": "2024-05-07T06:46:56.809Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 9,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "componentTextHighlight"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/64N0hdXB5NbKSOB1f68LpB"
+      },
+      "fields": {
+        "name": {
+          "en-US": "Tags"
+        },
+        "content": {
+          "de-DE": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Tags H1",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-1"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          },
+          "en-US": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Tags ",
+                    "nodeType": "text"
+                  },
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": " H1",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-1"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        },
+        "styling": {
+          "en-US": "text-4xl leading-tight sm:text-5xl sm:font-light sm:leading-[1.25] sm:tracking-widest text-center"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "EfYAMFXsqAjCLsFJZFB2m",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:47:02.850Z",
+        "updatedAt": "2024-05-07T06:47:13.580Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2024-05-07T06:47:13.580Z",
+        "firstPublishedAt": "2024-05-07T06:47:13.580Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "componentSeo"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/EfYAMFXsqAjCLsFJZFB2m"
+      },
+      "fields": {
+        "internalName": {
+          "en-US": "Tags"
+        },
+        "pageTitle": {
+          "de-DE": "Tags",
+          "en-US": "Tags"
+        },
+        "follow": {
+          "en-US": true
+        },
+        "index": {
+          "en-US": true
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "6nyEOzJv1KK9Wkdq4JjS0o",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:53:56.514Z",
+        "updatedAt": "2024-05-07T06:55:07.709Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "publishedAt": "2024-05-07T06:55:07.709Z",
+        "firstPublishedAt": "2024-05-07T06:55:07.709Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 7,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "tagPage"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/6nyEOzJv1KK9Wkdq4JjS0o"
+      },
+      "fields": {
+        "internalName": {
+          "en-US": "Testtag"
+        },
+        "seoFields": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "Nog3XuN0cayrPPP7MVRRX"
+            }
+          }
+        },
+        "tag": {
+          "en-US": "testtag"
+        },
+        "textHighlight": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "5pYDRHsLSR7AeNSlw6cM3N"
+              }
+            }
+          ]
+        },
+        "content": {
+          "de-DE": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "testtag",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "en-US": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Testtag",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "showTagCloud": {
+          "en-US": "Yes"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "5pYDRHsLSR7AeNSlw6cM3N",
+        "type": "Entry",
+        "createdAt": "2024-05-07T06:54:38.029Z",
+        "updatedAt": "2024-05-07T06:55:40.113Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 5,
+        "publishedAt": "2024-05-07T06:55:40.113Z",
+        "firstPublishedAt": "2024-05-07T06:54:53.217Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 6,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "componentTextHighlight"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/5pYDRHsLSR7AeNSlw6cM3N"
+      },
+      "fields": {
+        "name": {
+          "en-US": "Testtag"
+        },
+        "content": {
+          "de-DE": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Testtag",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-1"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          },
+          "en-US": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "Testtag",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "heading-1"
+              },
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        },
+        "styling": {
+          "en-US": "text-4xl leading-tight sm:text-5xl sm:font-light sm:leading-[1.25] sm:tracking-widest text-center"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "17SkNydA0joRF3tBEd51Li",
+        "type": "Entry",
+        "createdAt": "2024-05-07T07:12:18.933Z",
+        "updatedAt": "2024-05-07T07:12:40.693Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 4,
+        "publishedAt": "2024-05-07T07:12:40.693Z",
+        "firstPublishedAt": "2024-05-07T07:12:40.693Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 5,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "tagPage"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/17SkNydA0joRF3tBEd51Li"
+      },
+      "fields": {
+        "internalName": {
+          "en-US": "Testtag2"
+        },
+        "seoFields": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "Nog3XuN0cayrPPP7MVRRX"
+            }
+          }
+        },
+        "tag": {
+          "en-US": "testtag2"
+        },
+        "textHighlight": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "5pYDRHsLSR7AeNSlw6cM3N"
+              }
+            }
+          ]
+        },
+        "content": {
+          "de-DE": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "testtag2",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "en-US": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Testtag2",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "showTagCloud": {
+          "en-US": "Yes"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "id": "7gWbLfvx8npjdxBTJ00GPO",
+        "type": "Entry",
+        "createdAt": "2024-05-07T07:12:44.950Z",
+        "updatedAt": "2024-05-07T07:12:59.818Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2024-05-07T07:12:59.818Z",
+        "firstPublishedAt": "2024-05-07T07:12:59.818Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "tagPage"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/msfu6cxjsfn6/environments/master/entries/7gWbLfvx8npjdxBTJ00GPO"
+      },
+      "fields": {
+        "internalName": {
+          "en-US": "Testtag3"
+        },
+        "seoFields": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "Nog3XuN0cayrPPP7MVRRX"
+            }
+          }
+        },
+        "tag": {
+          "en-US": "testtag3"
+        },
+        "textHighlight": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "5pYDRHsLSR7AeNSlw6cM3N"
+              }
+            }
+          ]
+        },
+        "content": {
+          "de-DE": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "testtag3",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "en-US": {
+            "nodeType": "document",
+            "data": {
+            },
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {
+                },
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "Testtag3",
+                    "marks": [
+                    ],
+                    "data": {
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "showTagCloud": {
+          "en-US": "Yes"
+        }
+      }
     }
   ],
   "assets": [
@@ -5663,6 +7187,75 @@
         {
           "key": "x-api-key",
           "secret": true
+        }
+      ]
+    },
+    {
+      "name": "Cache Delete Blog Posts",
+      "url": "https://nextjs14-caching-revalidation.vercel.app/api/revalidatepath",
+      "httpBasicUsername": null,
+      "topics": [
+        "Entry.publish"
+      ],
+      "filters": [
+        {
+          "equals": [
+            {
+              "doc": "sys.environment.sys.id"
+            },
+            "master"
+          ]
+        },
+        {
+          "equals": [
+            {
+              "doc": "sys.contentType.sys.id"
+            },
+            "pageBlogPost"
+          ]
+        }
+      ],
+      "transformation": {
+        "method": "POST",
+        "body": {
+          "slug": "{ /payload/fields/slug/en-US }",
+          "entityId": "{ /payload/sys/id }",
+          "spaceId": "{ /payload/sys/space/sys/id }"
+        }
+      },
+      "active": true,
+      "sys": {
+        "type": "WebhookDefinition",
+        "id": "0XyjBLtSPTJpWkLvjRgiyM",
+        "version": 6,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "msfu6cxjsfn6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "createdAt": "2024-05-06T08:54:08Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "7FLuNcp5oDnApKvaq1pqBW"
+          }
+        },
+        "updatedAt": "2024-05-06T09:52:33Z"
+      },
+      "headers": [
+        {
+          "key": "secret",
+          "value": "7Q8kve"
         }
       ]
     }
