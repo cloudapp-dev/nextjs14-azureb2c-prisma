@@ -601,6 +601,7 @@ export type ComponentSeoLinkingCollections = {
   entryCollection?: Maybe<EntryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
+  tagPageCollection?: Maybe<TagPageCollection>;
 };
 
 
@@ -625,6 +626,15 @@ export type ComponentSeoLinkingCollectionsPageLandingCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   order?: InputMaybe<Array<InputMaybe<ComponentSeoLinkingCollectionsPageLandingCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ComponentSeoLinkingCollectionsTagPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ComponentSeoLinkingCollectionsTagPageCollectionOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -663,6 +673,23 @@ export enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export enum ComponentSeoLinkingCollectionsTagPageCollectionOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  ShowTagCloudAsc = 'showTagCloud_ASC',
+  ShowTagCloudDesc = 'showTagCloud_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TagAsc = 'tag_ASC',
+  TagDesc = 'tag_DESC'
 }
 
 export enum ComponentSeoOrder {
@@ -805,6 +832,7 @@ export type ComponentTextHighlightLinkingCollections = {
   __typename?: 'ComponentTextHighlightLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
+  tagPageCollection?: Maybe<TagPageCollection>;
 };
 
 
@@ -824,6 +852,15 @@ export type ComponentTextHighlightLinkingCollectionsPageLandingCollectionArgs = 
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type ComponentTextHighlightLinkingCollectionsTagPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ComponentTextHighlightLinkingCollectionsTagPageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export enum ComponentTextHighlightLinkingCollectionsPageLandingCollectionOrder {
   InternalNameAsc = 'internalName_ASC',
   InternalNameDesc = 'internalName_DESC',
@@ -839,6 +876,23 @@ export enum ComponentTextHighlightLinkingCollectionsPageLandingCollectionOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export enum ComponentTextHighlightLinkingCollectionsTagPageCollectionOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  ShowTagCloudAsc = 'showTagCloud_ASC',
+  ShowTagCloudDesc = 'showTagCloud_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TagAsc = 'tag_ASC',
+  TagDesc = 'tag_DESC'
 }
 
 export enum ComponentTextHighlightOrder {
@@ -1939,6 +1993,8 @@ export type Query = {
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
   pageLanding?: Maybe<PageLanding>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
+  tagPage?: Maybe<TagPage>;
+  tagPageCollection?: Maybe<TagPageCollection>;
 };
 
 
@@ -2128,6 +2184,23 @@ export type QueryPageLandingCollectionArgs = {
   where?: InputMaybe<PageLandingFilter>;
 };
 
+
+export type QueryTagPageArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryTagPageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<TagPageOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<TagPageFilter>;
+};
+
 export type ResourceLink = {
   sys: ResourceSys;
 };
@@ -2184,6 +2257,213 @@ export type SysFilter = {
   publishedVersion_not?: InputMaybe<Scalars['Float']['input']>;
   publishedVersion_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPage = Entry & {
+  __typename?: 'TagPage';
+  content?: Maybe<TagPageContent>;
+  contentfulMetadata: ContentfulMetadata;
+  internalName?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<TagPageLinkingCollections>;
+  seoFields?: Maybe<ComponentSeo>;
+  showTagCloud?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+  tag?: Maybe<Scalars['String']['output']>;
+  textHighlightCollection?: Maybe<TagPageTextHighlightCollection>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageContentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageInternalNameArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageSeoFieldsArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ComponentSeoFilter>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageShowTagCloudArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageTagArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage) */
+export type TagPageTextHighlightCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<TagPageTextHighlightCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ComponentTextHighlightFilter>;
+};
+
+export type TagPageCollection = {
+  __typename?: 'TagPageCollection';
+  items: Array<Maybe<TagPage>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type TagPageContent = {
+  __typename?: 'TagPageContent';
+  json: Scalars['JSON']['output'];
+  links: TagPageContentLinks;
+};
+
+export type TagPageContentAssets = {
+  __typename?: 'TagPageContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type TagPageContentEntries = {
+  __typename?: 'TagPageContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type TagPageContentLinks = {
+  __typename?: 'TagPageContentLinks';
+  assets: TagPageContentAssets;
+  entries: TagPageContentEntries;
+  resources: TagPageContentResources;
+};
+
+export type TagPageContentResources = {
+  __typename?: 'TagPageContentResources';
+  block: Array<TagPageContentResourcesBlock>;
+  hyperlink: Array<TagPageContentResourcesHyperlink>;
+  inline: Array<TagPageContentResourcesInline>;
+};
+
+export type TagPageContentResourcesBlock = ResourceLink & {
+  __typename?: 'TagPageContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type TagPageContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'TagPageContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type TagPageContentResourcesInline = ResourceLink & {
+  __typename?: 'TagPageContentResourcesInline';
+  sys: ResourceSys;
+};
+
+export type TagPageFilter = {
+  AND?: InputMaybe<Array<InputMaybe<TagPageFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<TagPageFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']['input']>;
+  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  content_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  internalName?: InputMaybe<Scalars['String']['input']>;
+  internalName_contains?: InputMaybe<Scalars['String']['input']>;
+  internalName_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  internalName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  internalName_not?: InputMaybe<Scalars['String']['input']>;
+  internalName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  internalName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoFields?: InputMaybe<CfComponentSeoNestedFilter>;
+  seoFields_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  showTagCloud?: InputMaybe<Scalars['String']['input']>;
+  showTagCloud_contains?: InputMaybe<Scalars['String']['input']>;
+  showTagCloud_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  showTagCloud_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  showTagCloud_not?: InputMaybe<Scalars['String']['input']>;
+  showTagCloud_not_contains?: InputMaybe<Scalars['String']['input']>;
+  showTagCloud_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  tag_contains?: InputMaybe<Scalars['String']['input']>;
+  tag_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  tag_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  tag_not?: InputMaybe<Scalars['String']['input']>;
+  tag_not_contains?: InputMaybe<Scalars['String']['input']>;
+  tag_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  textHighlight?: InputMaybe<CfComponentTextHighlightNestedFilter>;
+  textHighlightCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type TagPageLinkingCollections = {
+  __typename?: 'TagPageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type TagPageLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum TagPageOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  ShowTagCloudAsc = 'showTagCloud_ASC',
+  ShowTagCloudDesc = 'showTagCloud_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TagAsc = 'tag_ASC',
+  TagDesc = 'tag_DESC'
+}
+
+export type TagPageTextHighlightCollection = {
+  __typename?: 'TagPageTextHighlightCollection';
+  items: Array<Maybe<ComponentTextHighlight>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum TagPageTextHighlightCollectionOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  StylingAsc = 'styling_ASC',
+  StylingDesc = 'styling_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 export type _Node = {
   _id: Scalars['ID']['output'];
@@ -2432,7 +2712,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', assets: { __typename?: 'PageBlogPostContentAssets', block: Array<{ __typename: 'Asset', title?: string | null, url?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> }, entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'TagPage' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2466,7 +2746,7 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, slug?: string | null, showTagCloud?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string, publishedAt?: any | null, firstPublishedAt?: any | null }, contentfulMetadata: { __typename?: 'ContentfulMetadata', tags: Array<{ __typename?: 'ContentfulTag', id?: string | null, name?: string | null } | null> }, logo?: { __typename?: 'Asset', url?: string | null } | null, content?: { __typename?: 'PageLandingContent', json: any, links: { __typename?: 'PageLandingContentLinks', entries: { __typename?: 'PageLandingContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, seoFields?: (
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'TagPage' } | null> } } } | null, seoFields?: (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
   ) | null, featuredBlogPost?: (
@@ -2522,10 +2802,60 @@ export type SitemapPagesQuery = (
   & SitemapPagesFieldsFragment
 );
 
+export type TagPageFieldsFragment = { __typename: 'TagPage', internalName?: string | null, tag?: string | null, showTagCloud?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string, publishedAt?: any | null, firstPublishedAt?: any | null }, content?: { __typename?: 'TagPageContent', json: any, links: { __typename?: 'TagPageContentLinks', assets: { __typename: 'TagPageContentAssets', block: Array<{ __typename: 'Asset', title?: string | null, url?: string | null, contentType?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null> } } } | null, seoFields?: (
+    { __typename?: 'ComponentSeo' }
+    & SeoFieldsFragment
+  ) | null, textHighlightCollection?: { __typename?: 'TagPageTextHighlightCollection', items: Array<(
+      { __typename?: 'ComponentTextHighlight' }
+      & TextHighlightFieldsFragment
+    ) | null> } | null };
+
+export type TagPageQueryVariables = Exact<{
+  tag: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+}>;
+
+
+export type TagPageQuery = { __typename?: 'Query', tagPageCollection?: { __typename?: 'TagPageCollection', items: Array<(
+      { __typename?: 'TagPage' }
+      & TagPageFieldsFragment
+    ) | null> } | null };
+
+export type TagPageCollectionQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  order?: InputMaybe<Array<InputMaybe<TagPageOrder>> | InputMaybe<TagPageOrder>>;
+  where?: InputMaybe<TagPageFilter>;
+}>;
+
+
+export type TagPageCollectionQuery = { __typename?: 'Query', tagPageCollection?: { __typename?: 'TagPageCollection', items: Array<(
+      { __typename?: 'TagPage' }
+      & TagPageFieldsFragment
+    ) | null> } | null };
+
+export type TagPageFieldsSmallFragment = { __typename: 'TagPage', internalName?: string | null, tag?: string | null, sys: { __typename?: 'Sys', id: string, publishedAt?: any | null, firstPublishedAt?: any | null } };
+
+export type TagPageCollectionSmallQueryVariables = Exact<{
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  order?: InputMaybe<Array<InputMaybe<TagPageOrder>> | InputMaybe<TagPageOrder>>;
+  where?: InputMaybe<TagPageFilter>;
+}>;
+
+
+export type TagPageCollectionSmallQuery = { __typename?: 'Query', tagPageCollection?: { __typename?: 'TagPageCollection', items: Array<(
+      { __typename?: 'TagPage' }
+      & TagPageFieldsSmallFragment
+    ) | null> } | null };
+
 export type TextHighlightFieldsFragment = { __typename: 'ComponentTextHighlight', name?: string | null, styling?: string | null, content?: { __typename?: 'ComponentTextHighlightContent', json: any, links: { __typename?: 'ComponentTextHighlightContentLinks', entries: { __typename?: 'ComponentTextHighlightContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'ComponentTextHighlight' } | { __typename?: 'FooterItemGroup' } | { __typename?: 'NavItem' } | { __typename?: 'NavItemGroup' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | { __typename?: 'TagPage' } | null> } } } | null };
 
 export const NavItemFieldsFragmentDoc = gql`
     fragment NavItemFields on NavItem {
@@ -2773,6 +3103,59 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
 }
     `;
+export const TagPageFieldsFragmentDoc = gql`
+    fragment TagPageFields on TagPage {
+  __typename
+  sys {
+    id
+    spaceId
+    publishedAt
+    firstPublishedAt
+  }
+  internalName
+  tag
+  showTagCloud
+  content {
+    json
+    links {
+      assets {
+        __typename
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          url
+          contentType
+          width
+          height
+        }
+      }
+    }
+  }
+  seoFields {
+    ...SeoFields
+  }
+  textHighlightCollection(limit: 1) {
+    items {
+      ...TextHighlightFields
+    }
+  }
+}
+    `;
+export const TagPageFieldsSmallFragmentDoc = gql`
+    fragment TagPageFieldsSmall on TagPage {
+  __typename
+  sys {
+    id
+    publishedAt
+    firstPublishedAt
+  }
+  internalName
+  tag
+}
+    `;
 export const FooterItemGroupDocument = gql`
     query footerItemGroup($locale: String, $preview: Boolean) {
   footerItemGroupCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2902,6 +3285,58 @@ export const SitemapPagesDocument = gql`
   ...sitemapPagesFields
 }
     ${SitemapPagesFieldsFragmentDoc}`;
+export const TagPageDocument = gql`
+    query tagPage($tag: String!, $locale: String, $preview: Boolean) {
+  tagPageCollection(
+    limit: 1
+    locale: $locale
+    where: {tag: $tag}
+    preview: $preview
+  ) {
+    items {
+      ...TagPageFields
+    }
+  }
+}
+    ${TagPageFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${TextHighlightFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}`;
+export const TagPageCollectionDocument = gql`
+    query tagPageCollection($limit: Int, $locale: String, $preview: Boolean, $order: [TagPageOrder], $where: TagPageFilter) {
+  tagPageCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...TagPageFields
+    }
+  }
+}
+    ${TagPageFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${TextHighlightFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}`;
+export const TagPageCollectionSmallDocument = gql`
+    query tagPageCollectionSmall($limit: Int, $locale: String, $preview: Boolean, $order: [TagPageOrder], $where: TagPageFilter) {
+  tagPageCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...TagPageFieldsSmall
+    }
+  }
+}
+    ${TagPageFieldsSmallFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -2936,6 +3371,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     sitemapPages(variables: SitemapPagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SitemapPagesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SitemapPagesQuery>(SitemapPagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'sitemapPages', 'query', variables);
+    },
+    tagPage(variables: TagPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TagPageQuery>(TagPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tagPage', 'query', variables);
+    },
+    tagPageCollection(variables?: TagPageCollectionQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagPageCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TagPageCollectionQuery>(TagPageCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tagPageCollection', 'query', variables);
+    },
+    tagPageCollectionSmall(variables?: TagPageCollectionSmallQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TagPageCollectionSmallQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TagPageCollectionSmallQuery>(TagPageCollectionSmallDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tagPageCollectionSmall', 'query', variables);
     }
   };
 }

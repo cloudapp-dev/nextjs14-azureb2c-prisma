@@ -1,0 +1,19 @@
+query tagPageCollection(
+  $limit: Int
+  $locale: String
+  $preview: Boolean
+  $order: [TagPageOrder]
+  $where: TagPageFilter
+) {
+  tagPageCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...TagPageFields
+    }
+  }
+}

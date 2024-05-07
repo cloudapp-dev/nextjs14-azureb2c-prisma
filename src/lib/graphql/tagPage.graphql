@@ -1,0 +1,52 @@
+fragment TagPageFields on TagPage {
+  __typename
+  sys {
+    id
+    spaceId
+    publishedAt
+    firstPublishedAt
+  }
+  internalName
+  tag
+  showTagCloud
+  content {
+    json
+    links {
+      assets {
+        __typename
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          url
+          contentType
+          width
+          height
+        }
+      }
+    }
+  }
+  seoFields {
+    ...SeoFields
+  }
+  textHighlightCollection(limit: 1) {
+    items {
+      ...TextHighlightFields
+    }
+  }
+}
+
+query tagPage($tag: String!, $locale: String, $preview: Boolean) {
+  tagPageCollection(
+    limit: 1
+    locale: $locale
+    where: { tag: $tag }
+    preview: $preview
+  ) {
+    items {
+      ...TagPageFields
+    }
+  }
+}

@@ -91,5 +91,3 @@ export const TagCloudSimpleHome = ({
     </>
   );
 };
-
-// export default TagCloudSimpleHome;

@@ -336,6 +336,7 @@ type ComponentSeoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
   pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+  tagPageCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsTagPageCollectionOrder], preview: Boolean, skip: Int = 0): TagPageCollection
 }
 
 enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
@@ -372,6 +373,23 @@ enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+enum ComponentSeoLinkingCollectionsTagPageCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  showTagCloud_ASC
+  showTagCloud_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  tag_ASC
+  tag_DESC
 }
 
 enum ComponentSeoOrder {
@@ -481,6 +499,7 @@ input ComponentTextHighlightFilter {
 type ComponentTextHighlightLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentTextHighlightLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
+  tagPageCollection(limit: Int = 100, locale: String, order: [ComponentTextHighlightLinkingCollectionsTagPageCollectionOrder], preview: Boolean, skip: Int = 0): TagPageCollection
 }
 
 enum ComponentTextHighlightLinkingCollectionsPageLandingCollectionOrder {
@@ -498,6 +517,23 @@ enum ComponentTextHighlightLinkingCollectionsPageLandingCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+enum ComponentTextHighlightLinkingCollectionsTagPageCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  showTagCloud_ASC
+  showTagCloud_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  tag_ASC
+  tag_DESC
 }
 
 enum ComponentTextHighlightOrder {
@@ -1342,6 +1378,8 @@ type Query {
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
+  tagPage(id: String!, locale: String, preview: Boolean): TagPage
+  tagPageCollection(limit: Int = 100, locale: String, order: [TagPageOrder], preview: Boolean, skip: Int = 0, where: TagPageFilter): TagPageCollection
 }
 
 interface ResourceLink {
@@ -1397,6 +1435,146 @@ input SysFilter {
   publishedVersion_lte: Float
   publishedVersion_not: Float
   publishedVersion_not_in: [Float]
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/msfu6cxjsfn6/content_types/tagPage)
+"""
+type TagPage implements Entry {
+  content(locale: String): TagPageContent
+  contentfulMetadata: ContentfulMetadata!
+  internalName(locale: String): String
+  linkedFrom(allowedLocales: [String]): TagPageLinkingCollections
+  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
+  showTagCloud(locale: String): String
+  sys: Sys!
+  tag(locale: String): String
+  textHighlightCollection(limit: Int = 100, locale: String, order: [TagPageTextHighlightCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentTextHighlightFilter): TagPageTextHighlightCollection
+}
+
+type TagPageCollection {
+  items: [TagPage]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type TagPageContent {
+  json: JSON!
+  links: TagPageContentLinks!
+}
+
+type TagPageContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type TagPageContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type TagPageContentLinks {
+  assets: TagPageContentAssets!
+  entries: TagPageContentEntries!
+  resources: TagPageContentResources!
+}
+
+type TagPageContentResources {
+  block: [TagPageContentResourcesBlock!]!
+  hyperlink: [TagPageContentResourcesHyperlink!]!
+  inline: [TagPageContentResourcesInline!]!
+}
+
+type TagPageContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type TagPageContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type TagPageContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+input TagPageFilter {
+  AND: [TagPageFilter]
+  OR: [TagPageFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  internalName: String
+  internalName_contains: String
+  internalName_exists: Boolean
+  internalName_in: [String]
+  internalName_not: String
+  internalName_not_contains: String
+  internalName_not_in: [String]
+  seoFields: cfComponentSeoNestedFilter
+  seoFields_exists: Boolean
+  showTagCloud: String
+  showTagCloud_contains: String
+  showTagCloud_exists: Boolean
+  showTagCloud_in: [String]
+  showTagCloud_not: String
+  showTagCloud_not_contains: String
+  showTagCloud_not_in: [String]
+  sys: SysFilter
+  tag: String
+  tag_contains: String
+  tag_exists: Boolean
+  tag_in: [String]
+  tag_not: String
+  tag_not_contains: String
+  tag_not_in: [String]
+  textHighlight: cfComponentTextHighlightNestedFilter
+  textHighlightCollection_exists: Boolean
+}
+
+type TagPageLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum TagPageOrder {
+  internalName_ASC
+  internalName_DESC
+  showTagCloud_ASC
+  showTagCloud_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  tag_ASC
+  tag_DESC
+}
+
+type TagPageTextHighlightCollection {
+  items: [ComponentTextHighlight]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum TagPageTextHighlightCollectionOrder {
+  name_ASC
+  name_DESC
+  styling_ASC
+  styling_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 interface _Node {

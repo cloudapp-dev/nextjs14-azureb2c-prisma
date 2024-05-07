@@ -1,0 +1,30 @@
+fragment TagPageFieldsSmall on TagPage {
+  __typename
+  sys {
+    id
+    publishedAt
+    firstPublishedAt
+  }
+  internalName
+  tag
+}
+
+query tagPageCollectionSmall(
+  $limit: Int
+  $locale: String
+  $preview: Boolean
+  $order: [TagPageOrder]
+  $where: TagPageFilter
+) {
+  tagPageCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...TagPageFieldsSmall
+    }
+  }
+}

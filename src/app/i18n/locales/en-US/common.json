@@ -11,6 +11,9 @@
     "en": "English",
     "de": "German"
   },
+  "tagPage": {
+    "relatedArticles": "Topic related Posts"
+  },
   "landingPage": {
     "latestArticles": "Latest Posts"
   },
