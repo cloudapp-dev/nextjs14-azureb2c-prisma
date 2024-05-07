@@ -35,7 +35,7 @@ CONTENTFUL_REVALIDATE_SECRET=xxxxx
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/nextjs-14-caching-and-revalidation-real-world-example-with-cms
+Check tutorial -> https://www.cloudapp.dev/nextjs-14-working-with-contentful-tags-powered-by-graphql-and-tailwindcss
 
 Check example website ->
 
