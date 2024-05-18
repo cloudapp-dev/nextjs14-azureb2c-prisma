@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 // Authentication
 import { signIn, useSession } from "next-auth/react";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 // Internationalization
 import { useTranslation } from "@/app/i18n/client";
 import type { LocaleTypes } from "@/app/i18n/settings";
@@ -17,7 +17,6 @@ import {
   usePathname,
   useParams,
   useSelectedLayoutSegments,
-  useSearchParams,
 } from "next/navigation";
 import {
   GlobeAmericasIcon,
@@ -53,8 +52,10 @@ export default function Navbar({ menuItems, logourl }: any) {
   const router = useRouter();
   const urlSegments = useSelectedLayoutSegments();
 
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/`;
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/`;
+
+  const callbackUrl = `/${locale}/`;
 
   async function handleLocaleChange(event: any) {
     const newLocale = event;
@@ -115,216 +116,216 @@ export default function Navbar({ menuItems, logourl }: any) {
   }
 
   return (
-    <Suspense>
-      <Disclosure
-        as="nav"
-        className="px-2 py-2.5 dark:border-gray-700 dark:bg-gray-900 sm:px-4"
-      >
-        {({ open }) => (
-          <>
-            <div className="flex flex-wrap items-center justify-between mx-auto">
-              <Link className="flex items-center" href={`/${locale}/`}>
-                <Image
-                  className="block float-left w-auto h-12 lg:hidden dark:bg-blue-100"
-                  src={logourl ? logourl : "/images/svgrepo-com.svg"}
-                  alt="Testblog"
-                  width={48}
-                  height={48}
+    // <Suspense>
+    <Disclosure
+      as="nav"
+      className="px-2 py-2.5 dark:border-gray-700 dark:bg-gray-900 sm:px-4"
+    >
+      {({ open }) => (
+        <>
+          <div className="flex flex-wrap items-center justify-between mx-auto">
+            <Link className="flex items-center" href={`/${locale}/`}>
+              <Image
+                className="block float-left w-auto h-12 lg:hidden dark:bg-blue-100"
+                src={logourl ? logourl : "/images/svgrepo-com.svg"}
+                alt="Testblog"
+                width={48}
+                height={48}
+              />
+
+              <Image
+                className="hidden float-left w-auto h-12 lg:block dark:bg-blue-100"
+                src={logourl ? logourl : "/images/svgrepo-com.svg"}
+                alt="Testblog"
+                width={48}
+                height={48}
+              />
+            </Link>
+
+            <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
+              {/* Desktop View */}
+              {menuItems.map((menuItem: any, index: number) => (
+                <NavigationLink
+                  key={index}
+                  // href={menuItem.href}
+                  href={`/${locale}${menuItem.href}`}
+                  name={menuItem.name}
                 />
+              ))}
+            </div>
 
-                <Image
-                  className="hidden float-left w-auto h-12 lg:block dark:bg-blue-100"
-                  src={logourl ? logourl : "/images/svgrepo-com.svg"}
-                  alt="Testblog"
-                  width={48}
-                  height={48}
-                />
-              </Link>
+            <div className="flex items-center justify-center flex-1 px-2 lg:ml-6 lg:justify-end">
+              <DarkModeButton />
 
-              <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                {/* Desktop View */}
-                {menuItems.map((menuItem: any, index: number) => (
-                  <NavigationLink
-                    key={index}
-                    // href={menuItem.href}
-                    href={`/${locale}${menuItem.href}`}
-                    name={menuItem.name}
-                  />
-                ))}
-              </div>
-
-              <div className="flex items-center justify-center flex-1 px-2 lg:ml-6 lg:justify-end">
-                <DarkModeButton />
-
-                {/* Language dropdown */}
-                <Menu as="div" className="relative flex-shrink-0 ml-4">
-                  <div>
-                    <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                      <span className="sr-only">
-                        {" "}
-                        {t("user.languageswitcher")}
-                      </span>
-                      <GlobeAmericasIcon
+              {/* Language dropdown */}
+              <Menu as="div" className="relative flex-shrink-0 ml-4">
+                <div>
+                  <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span className="sr-only">
+                      {" "}
+                      {t("user.languageswitcher")}
+                    </span>
+                    <GlobeAmericasIcon
+                      className="w-8 h-8 hover:text-gray-500"
+                      aria-hidden="true"
+                    />
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 block w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          onClick={() => {
+                            handleLocaleChange("en-US");
+                          }}
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          🇺🇸 {t("languages.en")}
+                        </a>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          onClick={() => {
+                            handleLocaleChange("de-DE");
+                          }}
+                          className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          🇩🇪 {t("languages.de")}
+                        </a>
+                      )}
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+              {/* Profile dropdown */}
+              <Menu as="div" className="relative flex-shrink-0 ml-4">
+                <div>
+                  <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span className="sr-only">Open user menu</span>
+                    {(!user && (
+                      <UserCircleIcon
                         className="w-8 h-8 hover:text-gray-500"
                         aria-hidden="true"
                       />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 block w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            onClick={() => {
-                              handleLocaleChange("en-US");
-                            }}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            🇺🇸 {t("languages.en")}
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            onClick={() => {
-                              handleLocaleChange("de-DE");
-                            }}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            🇩🇪 {t("languages.de")}
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-                {/* Profile dropdown */}
-                <Menu as="div" className="relative flex-shrink-0 ml-4">
-                  <div>
-                    <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                      <span className="sr-only">Open user menu</span>
-                      {(!user && (
-                        <UserCircleIcon
-                          className="w-8 h-8 hover:text-gray-500"
+                    )) ||
+                      (user && (
+                        <UsersIcon
+                          className="w-8 h-8 p-1 hover:text-gray-500"
                           aria-hidden="true"
                         />
-                      )) ||
-                        (user && (
-                          <UsersIcon
-                            className="w-8 h-8 p-1 hover:text-gray-500"
-                            aria-hidden="true"
-                          />
-                        ))}
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 block w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {user && (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href={`/${locale}/profile`}
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              {t("user.profile")}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      )}
-                      {user && (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              onClick={() => {
-                                logoutredirect();
-                              }}
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              {t("user.logout")}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      )}
-                      {!user && (
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              onClick={() =>
-                                signIn("azure-ad-b2c", { callbackUrl })
-                              }
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              {t("user.login")}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      )}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-              </div>
-
-              <div className="flex items-center lg:hidden">
-                {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
+                      ))}
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 block w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href={`/${locale}/profile`}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.profile")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() => {
+                              logoutredirect();
+                            }}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.logout")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {!user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() =>
+                              signIn("azure-ad-b2c", { callbackUrl })
+                            }
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.login")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                  </Menu.Items>
+                </Transition>
+              </Menu>
             </div>
 
-            <Disclosure.Panel className="lg:hidden">
-              <div className="pt-2 pb-3 space-y-1">
-                {/* Only show up in Mobile view */}
-                {menuItems.map((menuItem: any, index: number) => (
-                  <NavigationLinkDisclosure
-                    key={index}
-                    // href={menuItem.href}
-                    href={`/${locale}${menuItem.href}`}
-                    name={menuItem.name}
-                  />
-                ))}
-              </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
-    </Suspense>
+            <div className="flex items-center lg:hidden">
+              {/* Mobile menu button */}
+              <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <span className="sr-only">Open main menu</span>
+                {open ? (
+                  <XMarkIcon className="block w-6 h-6" aria-hidden="true" />
+                ) : (
+                  <Bars3Icon className="block w-6 h-6" aria-hidden="true" />
+                )}
+              </Disclosure.Button>
+            </div>
+          </div>
+
+          <Disclosure.Panel className="lg:hidden">
+            <div className="pt-2 pb-3 space-y-1">
+              {/* Only show up in Mobile view */}
+              {menuItems.map((menuItem: any, index: number) => (
+                <NavigationLinkDisclosure
+                  key={index}
+                  // href={menuItem.href}
+                  href={`/${locale}${menuItem.href}`}
+                  name={menuItem.name}
+                />
+              ))}
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+    // </Suspense>
   );
 }
