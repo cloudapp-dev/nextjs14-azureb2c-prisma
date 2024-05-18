@@ -10,6 +10,7 @@ import getAllNavitemsForHome from "@/components/header/navbar.menuitems.componen
 import getAllFooteritemsForHome from "@/components/footer/footer.menuitems.component";
 import ExitDraftModeLink from "@/components/header/draftmode/ExitDraftModeLink.component";
 import { locales } from "@/app/i18n/settings";
+import { Suspense } from "react";
 //Contentful Client
 import { client } from "@/lib/client";
 // Piwik Container
@@ -79,7 +80,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                   Draft mode is on! <ExitDraftModeLink className="underline" />
                 </p>
               )}
-              {children}
+              <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
               {/*PiwikPro */}
               <PiwikPro />
               <Footer footerItems={footerdata} />
