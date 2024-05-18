@@ -8,7 +8,6 @@ import Link from "next/link";
 import { Fragment } from "react";
 // Authentication
 import { signIn, useSession } from "next-auth/react";
-// import { Suspense } from "react";
 // Internationalization
 import { useTranslation } from "@/app/i18n/client";
 import type { LocaleTypes } from "@/app/i18n/settings";
@@ -16,6 +15,7 @@ import {
   useRouter,
   usePathname,
   useParams,
+  useSearchParams,
   useSelectedLayoutSegments,
 } from "next/navigation";
 import {
@@ -52,10 +52,8 @@ export default function Navbar({ menuItems, logourl }: any) {
   const router = useRouter();
   const urlSegments = useSelectedLayoutSegments();
 
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/`;
-
-  const callbackUrl = `/${locale}/`;
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/`;
 
   async function handleLocaleChange(event: any) {
     const newLocale = event;
@@ -116,7 +114,6 @@ export default function Navbar({ menuItems, logourl }: any) {
   }
 
   return (
-    // <Suspense>
     <Disclosure
       as="nav"
       className="px-2 py-2.5 dark:border-gray-700 dark:bg-gray-900 sm:px-4"
@@ -326,6 +323,5 @@ export default function Navbar({ menuItems, logourl }: any) {
         </>
       )}
     </Disclosure>
-    // </Suspense>
   );
 }
