@@ -11,11 +11,42 @@
     "en": "Englisch",
     "de": "Deutsch"
   },
+  "pages": {
+    "homepage": "Startseite",
+    "about": "About Seite",
+    "protected": "Protected",
+    "dashboard": "Übersichtsseite",
+    "profile": "Profilseite"
+  },
   "tagPage": {
     "relatedArticles": "Posts zum Thema"
   },
   "landingPage": {
     "latestArticles": "Neueste Posts"
+  },
+  "user": {
+    "login": "Anmelden/Registrieren",
+    "logout": "Abmelden",
+    "register": "Registrieren",
+    "passwordreset": "Password zurücksetzen",
+    "profile": "Profil",
+    "users": "Benutzer",
+    "languageswitcher": "Sprache umschalten",
+    "adduser": "Benutzer hinzufügen",
+    "addrole": "Rolle hinzufügen",
+    "updatevisitdata": "Besuchsdaten aktualisieren",
+    "promoteadmin": "Rolle ändern",
+    "selectrole": "Rolle auswählen",
+    "changedto": "geändert zu",
+    "rolemissing": "Bitte eine Rolle auswählen",
+    "datamissing": "Daten nicht vorhanden",
+    "roles": "Rollen",
+    "searchforroles": "Rollensuche",
+    "role": "Rolle",
+    "createdat": "Erstellt am",
+    "actions": "Aktionen",
+    "newsletterdelete": "Newslettereintrag entfernen",
+    "newsletterdeleteconfirm": "Newslettereintrag erfolgreich entfernt"
   },
   "search": {
     "button": "Suche",

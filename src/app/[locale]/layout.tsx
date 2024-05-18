@@ -14,6 +14,8 @@ import { locales } from "@/app/i18n/settings";
 import { client } from "@/lib/client";
 // Piwik Container
 import PiwikPro from "@/components/analytics/PiwikPro";
+// Auth AD B2C
+import { NextAuthProvider } from "@/app/providers";
 
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
@@ -69,18 +71,20 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       <head></head>
       <body>
         <main className={`${urbanist.variable} font-sans dark:bg-gray-900`}>
-          <Providers>
-            <Header showBar={true} menuItems={headerdata} logourl={logourl} />
-            {draftMode().isEnabled && (
-              <p className="bg-emerald-400 py-4 px-[6vw]">
-                Draft mode is on! <ExitDraftModeLink className="underline" />
-              </p>
-            )}
-            {children}
-            {/*PiwikPro */}
-            <PiwikPro />
-            <Footer footerItems={footerdata} />
-          </Providers>
+          <NextAuthProvider>
+            <Providers>
+              <Header showBar={true} menuItems={headerdata} logourl={logourl} />
+              {draftMode().isEnabled && (
+                <p className="bg-emerald-400 py-4 px-[6vw]">
+                  Draft mode is on! <ExitDraftModeLink className="underline" />
+                </p>
+              )}
+              {children}
+              {/*PiwikPro */}
+              <PiwikPro />
+              <Footer footerItems={footerdata} />
+            </Providers>
+          </NextAuthProvider>
         </main>
       </body>
     </html>

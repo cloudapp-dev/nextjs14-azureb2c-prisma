@@ -6,6 +6,8 @@ import DarkModeButton from "@/components/header/darkmode.component";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+// Authentication
+import { signIn, useSession } from "next-auth/react";
 // Internationalization
 import { useTranslation } from "@/app/i18n/client";
 import type { LocaleTypes } from "@/app/i18n/settings";
@@ -14,8 +16,13 @@ import {
   usePathname,
   useParams,
   useSelectedLayoutSegments,
+  useSearchParams,
 } from "next/navigation";
-import { GlobeAmericasIcon } from "@heroicons/react/24/solid";
+import {
+  GlobeAmericasIcon,
+  UserCircleIcon,
+  UsersIcon,
+} from "@heroicons/react/24/solid";
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
@@ -34,9 +41,19 @@ export default function Navbar({ menuItems, logourl }: any) {
   const currentRoute = pathname;
   const { t } = useTranslation(locale, "common");
 
+  // Authentication
+  const SIGN_OUT_URL = `https://${process.env.NEXT_PUBLIC_AZURE_AD_B2C_TENANT_NAME}.b2clogin.com/${process.env.NEXT_PUBLIC_AZURE_AD_B2C_TENANT_NAME}.onmicrosoft.com/${process.env.NEXT_PUBLIC_AZURE_AD_B2C_PRIMARY_USER_FLOW}/oauth2/v2.0/logout?post_logout_redirect_uri=${process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI}/${locale}`;
+
+  const { data: session } = useSession();
+  const user = session?.user;
+  const role = session?.role;
+
   const { push } = useRouter();
   const router = useRouter();
   const urlSegments = useSelectedLayoutSegments();
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/`;
 
   async function handleLocaleChange(event: any) {
     const newLocale = event;
@@ -45,6 +62,24 @@ export default function Navbar({ menuItems, logourl }: any) {
     // urlSegments will contain the segments after the locale.
     // We replace the URL with the new locale and the rest of the segments.
     router.push(`/${newLocale}/${urlSegments.join("/")}`);
+  }
+
+  async function logoutredirect() {
+    const logoutfeedback = await fetch(
+      "/api/auth/signout?callbackUrl=/api/auth/session",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: await fetch("/api/auth/csrf").then((rs) => rs.text()),
+      }
+    );
+
+    // console.log(logoutfeedback);
+    // console.log(SIGN_OUT_URL);
+    push(SIGN_OUT_URL);
   }
 
   function NavigationLink({ href, name }: Linkitems) {
@@ -173,6 +208,87 @@ export default function Navbar({ menuItems, logourl }: any) {
                         </a>
                       )}
                     </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+              {/* Profile dropdown */}
+              <Menu as="div" className="relative flex-shrink-0 ml-4">
+                <div>
+                  <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span className="sr-only">Open user menu</span>
+                    {(!user && (
+                      <UserCircleIcon
+                        className="w-8 h-8 hover:text-gray-500"
+                        aria-hidden="true"
+                      />
+                    )) ||
+                      (user && (
+                        <UsersIcon
+                          className="w-8 h-8 p-1 hover:text-gray-500"
+                          aria-hidden="true"
+                        />
+                      ))}
+                  </Menu.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 block w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href={`/${locale}/profile`}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.profile")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() => {
+                              logoutredirect();
+                            }}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.logout")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
+                    {!user && (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() =>
+                              signIn("azure-ad-b2c", { callbackUrl })
+                            }
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            {t("user.login")}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    )}
                   </Menu.Items>
                 </Transition>
               </Menu>

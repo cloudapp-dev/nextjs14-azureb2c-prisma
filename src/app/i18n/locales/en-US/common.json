@@ -14,8 +14,39 @@
   "tagPage": {
     "relatedArticles": "Topic related Posts"
   },
+  "pages": {
+    "homepage": "Home",
+    "about": "About",
+    "protected": "Protected",
+    "dashboard": "Dashboard",
+    "profile": "Profile Page"
+  },
   "landingPage": {
     "latestArticles": "Latest Posts"
+  },
+  "user": {
+    "login": "Login/Register",
+    "logout": "Logout",
+    "register": "Register",
+    "passwordreset": "Password Reset",
+    "profile": "Profile",
+    "users": "Users",
+    "languageswitcher": "Language switch",
+    "adduser": "Add User",
+    "addrole": "Add Role",
+    "updatevisitdata": "Update Visit Data",
+    "promoteadmin": "Change Role",
+    "selectrole": "Choose Role",
+    "changedto": "changed to",
+    "rolemissing": "Please select a role",
+    "datamissing": "Data not present",
+    "roles": "Roles",
+    "searchforroles": "Search for Roles",
+    "role": "Role",
+    "createdat": "Created",
+    "actions": "Actions",
+    "newsletterdelete": "Delete Newsletterrecord",
+    "newsletterdeleteconfirm": "Newsletterrecord successfully deleted"
   },
   "search": {
     "button": "Search",
