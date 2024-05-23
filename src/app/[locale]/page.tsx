@@ -145,7 +145,7 @@ async function Home({ params }: PageProps) {
 
   // Getting BlogPosts
   const blogPostsData = await client.pageBlogPostCollection({
-    limit: 12,
+    limit: 20,
     locale: params.locale.toString(),
     preview: isEnabled,
     order: PageBlogPostOrder.PublishedDateDesc,
