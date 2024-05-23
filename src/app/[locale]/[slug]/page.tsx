@@ -203,7 +203,7 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
           isHomePage={false}
         />
       </Container>
-      <Container className="max-w-4xl mt-8">
+      <Container className="max-w-5xl mt-8">
         <ArticleContent article={blogPost} />
       </Container>
       {relatedPosts.length > 0 && (
@@ -212,7 +212,10 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* <h2 className="mb-4 md:mb-6">Related Posts</h2> */}
           {/* With internationalization: */}
           <h2 className="mb-4 md:mb-6">{t("blog.relatedArticles")}</h2>
-          <ArticleTileGrid className="md:grid-cols-2" articles={relatedPosts} />
+          <ArticleTileGrid
+            className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            articles={relatedPosts}
+          />
         </Container>
       )}
     </>

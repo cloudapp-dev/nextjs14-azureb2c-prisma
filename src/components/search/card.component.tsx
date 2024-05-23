@@ -66,17 +66,24 @@ export default function Card({ result }: CardProps) {
             className={twMerge(classNameImage, "transition-all")}
           ></Image>
         </Link>
-        <div className="flex flex-col flex-1 px-4 py-3 md:px-5 md:py-4 lg:px-7 lg:py-5">
+        <div className="flex flex-col flex-1 px-4 py-3 dark:bg-gray-800 md:px-5 md:py-4 lg:px-7 lg:py-5">
+          {/* <div className="flex flex-col flex-1 px-4 py-3 md:px-5 md:py-4 lg:px-7 lg:py-5"> */}
           {langresult.title && (
             <Link href={`/${locale}/${result.slug}`}>
-              <p className="mb-2 h3 text-gray-800 md:mb-3">
+              <p className="mb-2 h3 line-clamp-2 text-gray-800 dark:text-[#AEC1CC] md:mb-3">
+                {/* <p className="mb-2 line-clamp-2 h3 text-gray-800 md:mb-3"> */}
                 {langresult.title}
               </p>
             </Link>
           )}
+          {langresult.shortDescription && (
+            <p className="mt-2 text-base line-clamp-2">
+              {langresult.shortDescription}
+            </p>
+          )}
 
           {/* <div className="grid sgrid-cols-1 gap-y-1 gap-x-1 md:grid-cols-2 lg:gap-x-1 lg:gap-y-1"> */}
-          {/* flex mt-auto items-center */}
+          {/* <div className="flex mt-auto items-center"> */}
           <div className="flex flex-wrap max-w-2xl gap-2 mr-auto">
             {/* <div className="flex mt-2 mr-auto"> */}
             {result.tags.map((tag: string, index) => (

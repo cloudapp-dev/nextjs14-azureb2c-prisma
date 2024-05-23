@@ -7,12 +7,12 @@ interface ResultsProps {
 }
 
 export default function Results({ results }: ResultsProps) {
-  const className = "md:grid-cols-2 lg:grid-cols-3";
+  const className = "md:grid-cols-3 lg:grid-cols-4";
 
   return (
     <div
       className={twMerge(
-        "grid grid-cols-1 gap-y-4 gap-x-5 md:grid-cols-3 lg:gap-x-12 lg:gap-y-12",
+        "grid grid-cols-1 gap-y-4 gap-x-5 lg:gap-x-12 lg:gap-y-12",
         className
       )}
     >
