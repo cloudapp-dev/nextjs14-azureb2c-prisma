@@ -31,11 +31,27 @@ NEXT_PUBLIC_PIWIK_PRO_ID=xxxxxx
 NEXT_PUBLIC_PIWIK_CONTAINER_NAME=xxxxx
 # Revalidate Secret
 CONTENTFUL_REVALIDATE_SECRET=xxxxx
+
+# AD B2C
+NEXT_PUBLIC_AZURE_AD_B2C_TENANT_NAME=xxxxx
+NEXT_PUBLIC_AZURE_AD_B2C_PRIMARY_USER_FLOW=xxxxx
+
+NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI=http://localhost:3000
+AZURE_AD_B2C_CLIENT_SECRET=xxxxx
+NEXT_PUBLIC_AZURE_AD_B2C_CLIENT_ID=xxxxx
+
+# Prisma - Postegres neon.tech
+DATABASE_URL=xxxx
+
+# Basic Auth
+BASIC_AUTH_USER=xxx
+BASIC_AUTH_PASSWORD=xxxx
 ```
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/nextjs-14-working-with-contentful-tags-powered-by-graphql-and-tailwindcss
+Check tutorial -> https://www.cloudapp.dev/custom-login-with-prisma-serverless-postgres-in-your-next-js-14-project
 
 Check example website ->
 
