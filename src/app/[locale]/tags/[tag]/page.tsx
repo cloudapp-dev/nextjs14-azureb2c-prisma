@@ -149,7 +149,7 @@ async function TagPage({ params }: PageProps) {
       preview: isEnabled,
     }),
     client.pageBlogPostCollection({
-      limit: 12,
+      limit: 20,
       locale: params.locale.toString(),
       preview: isEnabled,
       order: PageBlogPostOrder.PublishedDateDesc,
@@ -279,7 +279,7 @@ async function TagPage({ params }: PageProps) {
           <h2 className="mb-4 md:mb-6">{t("tagPage.relatedArticles")}</h2>
         )}
         <ArticleTileGrid
-          className="md:grid-cols-2 lg:grid-cols-3"
+          className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
         />
       </Container>

@@ -216,7 +216,7 @@ async function TagHomePage({ params }: PageProps) {
           <h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
         )}
         <ArticleTileGrid
-          className="md:grid-cols-2 lg:grid-cols-3"
+          className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
         />
       </Container>
