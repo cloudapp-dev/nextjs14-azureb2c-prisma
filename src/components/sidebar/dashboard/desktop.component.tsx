@@ -28,7 +28,7 @@ export default function MenuBarDesktop({ show, setter }: any) {
         : "dark:text-white/50 dark:hover:text-white text-black/50 hover:text-black";
 
     return (
-      <Link
+      <a
         href={route}
         onClick={() => {
           setter((oldVal: any) => !oldVal);
@@ -37,7 +37,7 @@ export default function MenuBarDesktop({ show, setter }: any) {
       >
         <div className="text-xl flex [&>*]:mx-auto w-[30px]">{icon}</div>
         <div>{name}</div>
-      </Link>
+      </a>
     );
   };
 
