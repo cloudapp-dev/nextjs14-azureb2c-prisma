@@ -136,11 +136,17 @@ async function Home({ params }: PageProps) {
     const searchFacets = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/facets`,
       {}
-    ).then((res) => res.json());
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        console.log("No data found");
+      });
 
-    maxSize = searchFacets.maxSize;
-    minSize = searchFacets.minSize;
-    datanew = searchFacets.datanew;
+    if (searchFacets) {
+      maxSize = searchFacets.maxSize;
+      minSize = searchFacets.minSize;
+      datanew = searchFacets.datanew;
+    }
   }
 
   // Getting BlogPosts
