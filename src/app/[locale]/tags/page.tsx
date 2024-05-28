@@ -171,9 +171,15 @@ async function TagHomePage({ params }: PageProps) {
         }),
         next: { revalidate: 3600 }, // 1 h cache,
       }
-    ).then((res) => res.json());
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        console.log("No data found");
+      });
 
-    datanew = searchTags.data;
+    if (searchTags) {
+      datanew = searchTags.data;
+    }
   }
   if (!page) {
     // If a blog post can't be found,
