@@ -15,7 +15,7 @@ declare module "next-auth" {
   }
 
   interface Profile {
-    extension_Rolle?: string;
+    extension_Role?: string;
     emails?: string;
     name?: string;
   }

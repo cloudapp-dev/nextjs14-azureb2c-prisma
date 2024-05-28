@@ -47,11 +47,20 @@ DATABASE_URL=xxxx
 # Basic Auth
 BASIC_AUTH_USER=xxx
 BASIC_AUTH_PASSWORD=xxxx
+
+# Getting Data from Azure AD B2C
+AZURE_CLIENT_ID=xxxx
+AZURE_CLIENT_SECRET=xxxx
+AZURE_GRANT_TYPE=client_credentials
+AZURE_SCOPE=https://graph.microsoft.com/.default
+AZURE_TENANT_ID=xxxx
+AZURE_TOKEN_URL=https://login.microsoftonline.com/xxxx/oauth2/v2.0/token
+AZURE_B2C_EXTENSION_USER=extension_xxxx_Role
 ```
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/custom-login-with-prisma-serverless-postgres-in-your-next-js-14-project
+Check tutorial -> https://www.cloudapp.dev/how-to-manipulate-your-azure-ad-b2c-data-via-your-rest-api
 
 Check example website ->
 

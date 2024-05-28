@@ -24,6 +24,13 @@
   "landingPage": {
     "latestArticles": "Latest Posts"
   },
+  "sidebar": {
+    "home": "Home",
+    "chatroom": "Chatroom",
+    "user": "User",
+    "newsletter": "Newsletter",
+    "activities": "Activities"
+  },
   "user": {
     "login": "Login/Register",
     "logout": "Logout",

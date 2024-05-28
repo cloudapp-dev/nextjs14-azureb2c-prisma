@@ -20,3 +20,17 @@ model logins {
   objectId  String?
   lastLogin DateTime @default(now())
 }
+
+model ApiToken {
+  tokenId        String   @id @default(cuid())
+  accessToken    String   @db.VarChar
+  tokenType      String   @default("Azure")
+  expirationDate DateTime
+  addedOn        DateTime @default(now())
+}
+
+model roles {
+  id      Int      @id @default(autoincrement())
+  name    String
+  addedOn DateTime @default(now())
+}
