@@ -21,6 +21,10 @@
     "dashboard": "Dashboard",
     "profile": "Profile Page"
   },
+  "claps": {
+    "clapText": "Applaud if you like the post",
+    "clapLogin": "Please login to applaud"
+  },
   "landingPage": {
     "latestArticles": "Latest Posts"
   },

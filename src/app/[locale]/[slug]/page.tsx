@@ -13,6 +13,9 @@ import { Article, WithContext } from "schema-dts";
 import path from "path";
 import Script from "next/script";
 import { Metadata, ResolvingMetadata } from "next";
+import { TagCloudSimpleHome } from "@/components/search/tagcloudsimpleHome.component";
+// Claps
+import ClapButton from "@/components/contentful/ClapButton.component";
 
 interface BlogPostPageParams {
   slug: string;
@@ -184,6 +187,29 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
 
   if (!blogPost || !relatedPosts) return null;
 
+  let { datanew, minSize, maxSize } = {
+    datanew: [],
+    minSize: 0,
+    maxSize: 0,
+  };
+
+  const searchFacets = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/facets?slug=${blogPost.slug}`,
+    {
+      // next: { revalidate: 24 * 60 * 60 }, // 24 hours,
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => {
+      console.log("No data found");
+    });
+
+  if (searchFacets) {
+    maxSize = searchFacets.maxSize;
+    minSize = searchFacets.minSize;
+    datanew = searchFacets.datanew;
+  }
+
   return (
     <>
       {blogPost && (
@@ -204,6 +230,17 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
         />
       </Container>
       <Container className="max-w-5xl mt-8">
+        {/* Tag Cloud Integration */}
+        {searchFacets && datanew.length > 0 && (
+          <TagCloudSimpleHome
+            datanew={datanew}
+            minSize={minSize * 10}
+            maxSize={maxSize * 5}
+            locale={params.locale}
+            source={"blog"}
+          />
+        )}
+        <div className="mt-4" />
         <ArticleContent article={blogPost} />
       </Container>
       {relatedPosts.length > 0 && (
@@ -218,6 +255,9 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
           />
         </Container>
       )}
+      <Container className="max-w-5xl mt-8">
+        <ClapButton slug={blogPost.slug || ""} />
+      </Container>
     </>
   );
 }

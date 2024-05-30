@@ -38,9 +38,15 @@ export default function AddRole() {
     // // get the data
     let data = await response.json();
 
-    // console.log("pushdata:", data.data.status);
+    if (response.status === 429) {
+      toast.error("Quota exceeded", {
+        position: "top-right",
+        autoClose: 1000,
+      });
+      return;
+    }
 
-    if (data.data.status === "new") {
+    if (data?.data.status === "new") {
       // reset the fields
       setName("");
 

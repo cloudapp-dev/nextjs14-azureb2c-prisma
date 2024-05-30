@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { createTranslation } from "@/app/i18n/server";
-import Chart from "../../../components/dashboard/chart.component";
+// import Chart from "../../../components/dashboard/chart.component";
 import type { LocaleTypes } from "@/app/i18n/settings";
 import Sidebar from "@/components/sidebar/dashboard/sidebar.component";
 

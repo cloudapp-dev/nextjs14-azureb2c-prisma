@@ -18,6 +18,10 @@
     "dashboard": "Übersichtsseite",
     "profile": "Profilseite"
   },
+  "claps": {
+    "clapText": "Klatschen Sie, wenn Ihnen der Artikel gefallen hat.",
+    "clapLogin": "Bitte melden Sie sich an, damit Sie Klatschen können"
+  },
   "tagPage": {
     "relatedArticles": "Posts zum Thema"
   },
