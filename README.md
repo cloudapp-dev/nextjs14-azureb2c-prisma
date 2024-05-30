@@ -56,11 +56,15 @@ AZURE_SCOPE=https://graph.microsoft.com/.default
 AZURE_TENANT_ID=xxxx
 AZURE_TOKEN_URL=https://login.microsoftonline.com/xxxx/oauth2/v2.0/token
 AZURE_B2C_EXTENSION_USER=extension_xxxx_Role
+
+# Redis Upstash
+UPSTASH_REDIS_REST_URL="xxx.upstash.io"
+UPSTASH_REDIS_REST_TOKEN="xxxx"
 ```
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/how-to-manipulate-your-azure-ad-b2c-data-via-your-rest-api
+Check tutorial -> https://www.cloudapp.dev/next-js-14-upstash-redis-adding-a-clap-function-within-minutes
 
 Check example website ->
 
