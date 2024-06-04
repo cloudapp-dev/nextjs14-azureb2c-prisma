@@ -64,7 +64,7 @@ UPSTASH_REDIS_REST_TOKEN="xxxx"
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/next-js-14-upstash-redis-adding-a-clap-function-within-minutes
+Check tutorial -> https://www.cloudapp.dev/azure-ad-b2cprisma-orm-postgresql-control-your-data-via-rest-api-part2
 
 Check example website ->
 
