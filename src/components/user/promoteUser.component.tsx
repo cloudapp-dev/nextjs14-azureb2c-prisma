@@ -55,6 +55,36 @@ const PromoteRole = ({
     setValue(role);
   };
 
+  const ondelete = async (id: string) => {
+    // fields check
+
+    let response = await fetch("/api/azure/user/delete?userid=" + id);
+
+    // // get the data
+    let data = response.status;
+
+    console.log("data:", data);
+
+    if (data === 204) {
+      // reset the fields
+
+      toast.success("Deleted", {
+        position: "top-right",
+        autoClose: 1000,
+      });
+      //Set Time to trigger UseEffect
+      setTime(Date.now());
+    } else {
+      toast.error(
+        "Oups, etwas ist schief gelaufen, bitte probieren Sie es noch einmal oder kontaktieren Sie uns.",
+        {
+          position: "top-right",
+          autoClose: 1000,
+        }
+      );
+    }
+  };
+
   const onpromote = async (id: string, role: string) => {
     // user structure
     let user = {
@@ -190,6 +220,17 @@ const PromoteRole = ({
                   onClick={() => onpromote(datauseritem.id, value)}
                 >
                   {t("user.promoteadmin")}
+                </Button>
+              </TableCell>
+              {/* Delete user */}
+              <TableCell>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  color="gray"
+                  onClick={() => ondelete(datauseritem.id)}
+                >
+                  {t("user.deleteuser")}
                 </Button>
               </TableCell>
             </TableRow>

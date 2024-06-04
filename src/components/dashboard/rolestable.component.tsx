@@ -13,6 +13,9 @@ import {
 import type { LocaleTypes } from "@/app/i18n/settings";
 import { useTranslation } from "@/app/i18n/client";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Role {
   id: number;
@@ -21,6 +24,7 @@ interface Role {
 }
 
 export default function RolesTable({ roles }: { roles: Role[] }) {
+  const router = useRouter();
   let intlDateObj = new Intl.DateTimeFormat("de-DE", {
     dateStyle: "full",
     timeStyle: "long",
@@ -28,6 +32,43 @@ export default function RolesTable({ roles }: { roles: Role[] }) {
   });
   const locale = useParams()?.locale as LocaleTypes;
   const { t } = useTranslation(locale, "common");
+
+  const ondelete = async (id: number) => {
+    // fields check
+    // if (!id) return setError("All fields are required");
+
+    // user structure
+    let user = {
+      id,
+    };
+
+    let response = await fetch("/api/user/deleterole", {
+      method: "POST",
+      body: JSON.stringify(user),
+    });
+
+    // // get the data
+    let data = await response.json();
+
+    if (data.data.status === "success") {
+      // reset the fields
+
+      toast.success("Deleted", {
+        position: "top-right",
+        autoClose: 1000,
+      });
+      // Refresh page after User deletion
+      router.refresh();
+    } else {
+      toast.error(
+        "Oups, etwas ist schief gelaufen, bitte probieren Sie es noch einmal oder kontaktieren Sie uns.",
+        {
+          position: "top-right",
+          autoClose: 1000,
+        }
+      );
+    }
+  };
 
   return (
     <>
@@ -46,6 +87,16 @@ export default function RolesTable({ roles }: { roles: Role[] }) {
               </TableCell>
               <TableCell>
                 <Text>{intlDateObj.format(role.addedOn)}</Text>
+              </TableCell>
+              <TableCell>
+                <Button
+                  size="xs"
+                  variant="primary"
+                  color="gray"
+                  onClick={() => ondelete(role.id)}
+                >
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}

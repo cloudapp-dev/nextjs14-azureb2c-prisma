@@ -57,7 +57,8 @@
     "createdat": "Erstellt am",
     "actions": "Aktionen",
     "newsletterdelete": "Newslettereintrag entfernen",
-    "newsletterdeleteconfirm": "Newslettereintrag erfolgreich entfernt"
+    "newsletterdeleteconfirm": "Newslettereintrag erfolgreich entfernt",
+    "deleteuser": "Benutzer löschen"
   },
   "search": {
     "button": "Suche",

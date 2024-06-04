@@ -57,7 +57,8 @@
     "createdat": "Created",
     "actions": "Actions",
     "newsletterdelete": "Delete Newsletterrecord",
-    "newsletterdeleteconfirm": "Newsletterrecord successfully deleted"
+    "newsletterdeleteconfirm": "Newsletterrecord successfully deleted",
+    "deleteuser": "Delete User"
   },
   "search": {
     "button": "Search",
