@@ -64,7 +64,7 @@ UPSTASH_REDIS_REST_TOKEN="xxxx"
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/azure-ad-b2cprisma-orm-postgresql-control-your-data-via-rest-api-part2
+Check tutorial -> https://www.cloudapp.dev/next-js-14-endless-scroll-with-contentful-and-server-actions
 
 Check example website ->
 
