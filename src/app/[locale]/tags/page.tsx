@@ -111,8 +111,9 @@ async function TagHomePage({ params }: PageProps) {
   const page = landingPageData.pageLandingCollection?.items[0];
 
   const blogPostsData = await client.pageBlogPostCollection({
-    limit: 12,
+    limit: 10,
     locale: params.locale.toString(),
+    skip: 0,
     preview: isEnabled,
     order: PageBlogPostOrder.PublishedDateDesc,
   });
@@ -224,6 +225,9 @@ async function TagHomePage({ params }: PageProps) {
         <ArticleTileGrid
           className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
+          slug=""
+          source="loadmoretags"
+          locale={params.locale.toString()}
         />
       </Container>
     </>

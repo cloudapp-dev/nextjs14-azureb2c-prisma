@@ -252,6 +252,9 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
           <ArticleTileGrid
             className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
             articles={relatedPosts}
+            slug=""
+            source="relatedposts"
+            locale={params.locale.toString()}
           />
         </Container>
       )}

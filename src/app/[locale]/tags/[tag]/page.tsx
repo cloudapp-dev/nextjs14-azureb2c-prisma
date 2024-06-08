@@ -149,7 +149,7 @@ async function TagPage({ params }: PageProps) {
       preview: isEnabled,
     }),
     client.pageBlogPostCollection({
-      limit: 20,
+      limit: 10,
       locale: params.locale.toString(),
       preview: isEnabled,
       order: PageBlogPostOrder.PublishedDateDesc,
@@ -287,6 +287,9 @@ async function TagPage({ params }: PageProps) {
         <ArticleTileGrid
           className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
+          slug={params.tag.toString()}
+          source="tag"
+          locale={params.locale.toString()}
         />
       </Container>
     </>

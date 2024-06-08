@@ -14,6 +14,7 @@ interface ArticleTileGridProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;
   slug: string | null | undefined;
   locale: string;
+  source: string;
 }
 
 const NUMBER_OF_USERS_TO_FETCH = 10;
@@ -23,6 +24,7 @@ export const ArticleTileGrid = ({
   className,
   slug,
   locale,
+  source,
   ...props
 }: ArticleTileGridProps) => {
   const [offset, setOffset] = useState(NUMBER_OF_USERS_TO_FETCH);
@@ -35,6 +37,7 @@ export const ArticleTileGrid = ({
       NUMBER_OF_USERS_TO_FETCH,
       locale || "",
       false,
+      source || "",
       slug || ""
     );
 
@@ -65,15 +68,18 @@ export const ArticleTileGrid = ({
       </div>
       {/* Infinite Scroll */}
       {/* <div ref={ref}>Loading...</div> */}
-      <div className="flex flex-col items-center">
-        <Button
-          onClick={loadMoreUsers}
-          size="lg"
-          className="mt-4 sm:flex sm:max-w-md"
-        >
-          Load more
-        </Button>
-      </div>
+      {/* Load More Button */}
+      {slug !== "relatedposts" && (
+        <div className="flex flex-col items-center">
+          <Button
+            onClick={loadMoreUsers}
+            size="lg"
+            className="mt-4 sm:flex sm:max-w-md"
+          >
+            Load more
+          </Button>
+        </div>
+      )}
     </>
   ) : null;
 };

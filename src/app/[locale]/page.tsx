@@ -243,6 +243,7 @@ async function Home({ params }: PageProps) {
           className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
           slug={page.featuredBlogPost.slug}
+          source="loadmore"
           locale={params.locale.toString()}
         />
       </Container>
