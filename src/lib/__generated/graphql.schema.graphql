@@ -1395,6 +1395,9 @@ type Sys {
   environmentId: String!
   firstPublishedAt: DateTime
   id: String!
+
+  """The locale that was requested."""
+  locale: String
   publishedAt: DateTime
   publishedVersion: Int
   spaceId: String!

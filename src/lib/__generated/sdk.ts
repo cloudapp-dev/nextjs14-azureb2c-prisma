@@ -2216,6 +2216,8 @@ export type Sys = {
   environmentId: Scalars['String']['output'];
   firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['String']['output'];
+  /** The locale that was requested. */
+  locale?: Maybe<Scalars['String']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   publishedVersion?: Maybe<Scalars['Int']['output']>;
   spaceId: Scalars['String']['output'];
@@ -2733,6 +2735,7 @@ export type PageBlogPostCollectionQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   limit?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
   order?: InputMaybe<Array<InputMaybe<PageBlogPostOrder>> | InputMaybe<PageBlogPostOrder>>;
   where?: InputMaybe<PageBlogPostFilter>;
 }>;
@@ -3226,9 +3229,10 @@ ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
 export const PageBlogPostCollectionDocument = gql`
-    query pageBlogPostCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageBlogPostOrder], $where: PageBlogPostFilter) {
+    query pageBlogPostCollection($locale: String, $preview: Boolean, $limit: Int, $skip: Int, $order: [PageBlogPostOrder], $where: PageBlogPostFilter) {
   pageBlogPostCollection(
     limit: $limit
+    skip: $skip
     locale: $locale
     preview: $preview
     order: $order

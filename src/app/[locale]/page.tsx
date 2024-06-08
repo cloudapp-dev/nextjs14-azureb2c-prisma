@@ -151,8 +151,9 @@ async function Home({ params }: PageProps) {
 
   // Getting BlogPosts
   const blogPostsData = await client.pageBlogPostCollection({
-    limit: 20,
+    limit: 10,
     locale: params.locale.toString(),
+    skip: 0,
     preview: isEnabled,
     order: PageBlogPostOrder.PublishedDateDesc,
     where: {
@@ -241,6 +242,8 @@ async function Home({ params }: PageProps) {
         <ArticleTileGrid
           className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
           articles={posts}
+          slug={page.featuredBlogPost.slug}
+          locale={params.locale.toString()}
         />
       </Container>
     </>
