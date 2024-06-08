@@ -69,7 +69,7 @@ export const ArticleTileGrid = ({
       {/* Infinite Scroll */}
       {/* <div ref={ref}>Loading...</div> */}
       {/* Load More Button */}
-      {slug !== "relatedposts" && (
+      {source !== "relatedposts" && (
         <div className="flex flex-col items-center">
           <Button
             onClick={loadMoreUsers}
