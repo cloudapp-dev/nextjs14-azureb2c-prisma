@@ -34,3 +34,17 @@ model roles {
   name    String
   addedOn DateTime @default(now())
 }
+
+model tracking {
+  id        Int      @id @default(autoincrement())
+  country   String?
+  city      String?
+  region    String?
+  url       String?
+  ip        String?
+  mobile    String?
+  platform  String?
+  useragent String?
+  referer   String?
+  addedOn   DateTime @default(now())
+}
