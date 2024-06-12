@@ -41,7 +41,9 @@ model tracking {
   city      String?
   region    String?
   url       String?
+  nexturl   String?
   ip        String?
+  pathname  String?
   mobile    String?
   platform  String?
   useragent String?

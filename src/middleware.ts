@@ -19,18 +19,23 @@ export function middleware(request: NextRequest) {
   //Middleware to track user data
   const { ip } = request;
 
+  // console.log("request", request);
+
   const message = {
     country: request.geo?.country,
     city: request.geo?.city,
     region: request.geo?.region,
+    pathname: request.nextUrl.pathname,
     url: request.url,
     ip: ip,
+    nexturl: request.headers.get("next-url"),
     mobile: request.headers.get("sec-ch-ua-mobile"),
     platform: request.headers.get("sec-ch-ua-platform"),
     useragent: request.headers.get("user-agent"),
     referer: request.headers.get("referer"),
   };
-  // console.log("message", message);
+  console.log("url", request.url);
+  console.log("nexturl", message.nexturl);
 
   sendToPrisma(message);
 
