@@ -64,7 +64,7 @@ UPSTASH_REDIS_REST_TOKEN="xxxx"
 
 import data to your contentful space
 
-Check tutorial for Next.js 14 Server Actions -> https://www.cloudapp.dev/nextjs-14-creating-an-html-sitemap-in-5-minutes-with-contentful
+Check tutorial for Next.js 14 HTML Sitemap with Contentful -> https://www.cloudapp.dev/nextjs-14-creating-an-html-sitemap-in-5-minutes-with-contentful
 
 Check tutorial for Next.js 14 Server Actions -> https://www.cloudapp.dev/next-js-14-endless-scroll-with-contentful-and-server-actions
 
