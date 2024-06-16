@@ -204,7 +204,7 @@ async function Sitemap_html({ params }: PageProps) {
           {sitemapPageTagpageUrls.map((field: any, index: number) => {
             return field ? (
               <div key={index}>
-                <Link href={field.tag}>{field.internalName}</Link>
+                <Link href={`tags/${field.tag}`}>{field.internalName}</Link>
               </div>
             ) : null;
           })}
@@ -215,7 +215,7 @@ async function Sitemap_html({ params }: PageProps) {
           {sitemapPageBlogPostUrls.map((field: any, index: number) => {
             return field ? (
               <div key={index}>
-                <Link href={field.slug}>{field.internalName}</Link>
+                <Link href={field.slug}>{field.title}</Link>
               </div>
             ) : null;
           })}

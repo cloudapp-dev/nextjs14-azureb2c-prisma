@@ -2793,7 +2793,7 @@ export type SeoFieldsFragment = { __typename: 'ComponentSeo', pageTitle?: string
       & ImageFieldsFragment
     ) | null> } | null };
 
-export type SitemapPagesFieldsFragment = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<{ __typename?: 'PageBlogPost', internalName?: string | null, slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageLandingCollection?: { __typename?: 'PageLandingCollection', items: Array<{ __typename?: 'PageLanding', internalName?: string | null, slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, tagPageCollection?: { __typename?: 'TagPageCollection', items: Array<{ __typename?: 'TagPage', internalName?: string | null, tag?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null };
+export type SitemapPagesFieldsFragment = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<{ __typename?: 'PageBlogPost', internalName?: string | null, title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageLandingCollection?: { __typename?: 'PageLandingCollection', items: Array<{ __typename?: 'PageLanding', internalName?: string | null, slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, tagPageCollection?: { __typename?: 'TagPageCollection', items: Array<{ __typename?: 'TagPage', internalName?: string | null, tag?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null };
 
 export type SitemapPagesQueryVariables = Exact<{
   locale: Scalars['String']['input'];
@@ -3099,6 +3099,7 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   pageBlogPostCollection(limit: 100, locale: $locale) {
     items {
       internalName
+      title
       slug
       sys {
         publishedAt
