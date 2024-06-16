@@ -64,9 +64,15 @@ UPSTASH_REDIS_REST_TOKEN="xxxx"
 
 import data to your contentful space
 
-Check tutorial -> https://www.cloudapp.dev/next-js-14-endless-scroll-with-contentful-and-server-actions
+Check tutorial for Next.js 14 Server Actions -> https://www.cloudapp.dev/nextjs-14-creating-an-html-sitemap-in-5-minutes-with-contentful
 
-Check example website ->
+Check tutorial for Next.js 14 Server Actions -> https://www.cloudapp.dev/next-js-14-endless-scroll-with-contentful-and-server-actions
+
+Check tutorial for Next.js 14 View Counter for Blog with Serverless Redis -> https://www.cloudapp.dev/nextjs-14-adding-a-view-counter-to-your-nextjs-blog-with-serverless-redis-upstash
+
+Check tutorial for Next.js 14 / Upstash Redis - Adding a Clap Function within Minutes - > https://www.cloudapp.dev/next-js-14-upstash-redis-adding-a-clap-function-within-minutes
+
+Check tutorial Azure AD B2C/Prisma ORM - Data control via REST - Part 2 - https://www.cloudapp.dev/azure-ad-b2cprisma-orm-postgresql-control-your-data-via-rest-api-part2
 
 or simply run this command after the creation of the .env.local file
 

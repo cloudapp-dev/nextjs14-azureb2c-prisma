@@ -25,6 +25,11 @@
     "clapText": "Applaud if you like the post",
     "clapLogin": "Please login to applaud"
   },
+  "sitemaphtml": {
+    "landingpages": "Landing pages",
+    "blogpostpages": "Blog Post Pages",
+    "tagpages": "Tag - Category Pages"
+  },
   "landingPage": {
     "latestArticles": "Latest Posts"
   },

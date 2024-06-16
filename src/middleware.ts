@@ -34,8 +34,8 @@ export function middleware(request: NextRequest) {
     useragent: request.headers.get("user-agent"),
     referer: request.headers.get("referer"),
   };
-  console.log("url", request.url);
-  console.log("nexturl", message.nexturl);
+  // console.log("url", request.url);
+  // console.log("nexturl", message.nexturl);
 
   sendToPrisma(message);
 

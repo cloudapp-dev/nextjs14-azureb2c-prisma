@@ -1,7 +1,26 @@
 fragment sitemapPagesFields on Query {
   pageBlogPostCollection(limit: 100, locale: $locale) {
     items {
+      internalName
       slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageLandingCollection(limit: 50, locale: $locale) {
+    items {
+      internalName
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  tagPageCollection(limit: 50, locale: $locale) {
+    items {
+      internalName
+      tag
       sys {
         publishedAt
       }

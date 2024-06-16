@@ -22,6 +22,11 @@
     "clapText": "Klatschen Sie, wenn Ihnen der Artikel gefallen hat.",
     "clapLogin": "Bitte melden Sie sich an, damit Sie Klatschen können"
   },
+  "sitemaphtml": {
+    "landingpages": "Hauptseiten",
+    "blogpostpages": "Blogseiten",
+    "tagpages": "Kategorieseiten"
+  },
   "tagPage": {
     "relatedArticles": "Posts zum Thema"
   },
