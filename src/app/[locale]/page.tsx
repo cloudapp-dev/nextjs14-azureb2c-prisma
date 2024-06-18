@@ -21,7 +21,6 @@ import Link from "next/link";
 import { LandingContent } from "@/components/contentful/ArticleContentLanding";
 
 import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
-import Slugify from "@/components/tools/slugify/slugify.component";
 
 export const revalidate = revalidateDuration; // revalidate at most every hour
 
@@ -251,7 +250,6 @@ async function Home({ params }: PageProps) {
         />
         {/* SitemapCounter */}
         <Sitemapcounter />
-        {/* <Slugify /> */}
       </Container>
     </>
   );
