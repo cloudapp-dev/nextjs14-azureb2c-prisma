@@ -30,6 +30,9 @@
     "blogpostpages": "Blog Post Pages",
     "tagpages": "Tag - Category Pages"
   },
+  "sitemapcounter": {
+    "placeholder": "Insert Sitemap URL"
+  },
   "landingPage": {
     "latestArticles": "Latest Posts"
   },

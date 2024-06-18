@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import type { NextFetchEvent, NextRequest } from "next/server";
 import { fallbackLng, locales } from "@/app/i18n/settings";
+import { Kafka } from "@upstash/kafka";
 
 const apikey = process.env.API_KEY;
+
+const kafka = new Kafka({
+  url: process.env.KAFKA_URL || "",
+  username: process.env.KAFKA_USERNAME || "",
+  password: process.env.KAFKA_PASSWORD || "",
+});
 
 async function sendToPrisma(message: any) {
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/tracking`, {
@@ -15,7 +22,7 @@ async function sendToPrisma(message: any) {
   });
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
   //Middleware to track user data
   const { ip } = request;
 
@@ -34,10 +41,28 @@ export function middleware(request: NextRequest) {
     useragent: request.headers.get("user-agent"),
     referer: request.headers.get("referer"),
   };
-  // console.log("url", request.url);
-  // console.log("nexturl", message.nexturl);
 
   sendToPrisma(message);
+
+  const messagekafka = {
+    country: request.geo?.country,
+    city: request.geo?.city,
+    region: request.geo?.region,
+    pathname: request.nextUrl.pathname,
+    url: request.url,
+    ip: request.headers.get("x-real-ip"),
+    exip: ip,
+    nexturl: request.headers.get("next-url"),
+    mobile: request.headers.get("sec-ch-ua-mobile"),
+    platform: request.headers.get("sec-ch-ua-platform"),
+    useragent: request.headers.get("user-agent"),
+    referer: request.headers.get("referer"),
+  };
+
+  const p = kafka.producer();
+  const topic = "web";
+
+  event.waitUntil(p.produce(topic, JSON.stringify(messagekafka)));
 
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;

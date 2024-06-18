@@ -27,6 +27,9 @@
     "blogpostpages": "Blogseiten",
     "tagpages": "Kategorieseiten"
   },
+  "sitemapcounter": {
+    "placeholder": "Sitemap URL eingeben"
+  },
   "tagPage": {
     "relatedArticles": "Posts zum Thema"
   },

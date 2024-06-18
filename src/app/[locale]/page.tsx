@@ -20,6 +20,9 @@ import { TagCloudSimpleHome } from "@/components/search/tagcloudsimpleHome.compo
 import Link from "next/link";
 import { LandingContent } from "@/components/contentful/ArticleContentLanding";
 
+import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
+import Slugify from "@/components/tools/slugify/slugify.component";
+
 export const revalidate = revalidateDuration; // revalidate at most every hour
 
 interface PageParams {
@@ -246,6 +249,9 @@ async function Home({ params }: PageProps) {
           source="loadmore"
           locale={params.locale.toString()}
         />
+        {/* SitemapCounter */}
+        <Sitemapcounter />
+        {/* <Slugify /> */}
       </Container>
     </>
   );
