@@ -24,13 +24,18 @@ const SitemapChecker: React.FC = () => {
       const urls = result.urlset.url.map((url: any) => url.loc[0]);
 
       const broken: string[] = [];
+      let data: Response;
 
       for (const url of urls) {
         try {
-          await fetch(url as string);
+          data = await fetch(url as string);
+          // console.log(data.status);
+          if (data.status !== 200) {
+            broken.push(url as string);
+          }
         } catch (error) {
           console.error("Error fetching the sitemap:", error);
-          broken.push(url as string);
+          // broken.push(url as string);
         }
       }
 
