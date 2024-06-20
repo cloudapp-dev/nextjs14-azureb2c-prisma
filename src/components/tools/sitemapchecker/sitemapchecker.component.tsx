@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { parseStringPromise } from "xml2js";
 import { Button } from "@tremor/react";
 import type { LocaleTypes } from "@/app/i18n/settings";
 import { useTranslation } from "@/app/i18n/client";
@@ -18,30 +17,17 @@ const SitemapChecker: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(url);
-      const xmlData = await response.text();
-      const result = await parseStringPromise(xmlData);
-      const urls = result.urlset.url.map((url: any) => url.loc[0]);
-
-      const broken: string[] = [];
-      let data: Response;
-
-      for (const url of urls) {
-        try {
-          data = await fetch(url as string);
-          // console.log(data.status);
-          if (data.status !== 200) {
-            broken.push(url as string);
-          }
-        } catch (error) {
-          console.error("Error fetching the sitemap:", error);
-          // broken.push(url as string);
-        }
+      const res = await fetch(
+        `/api/sitemaplinkcheck?url=${encodeURIComponent(url)}`
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setBrokenLinks(data.entries);
+      } else {
+        setBrokenLinks(data.error);
       }
-
-      setBrokenLinks(broken);
-    } catch (error) {
-      console.error("Error fetching the sitemap:", error);
+    } catch (err) {
+      console.error("An unexpected error occurred", err);
     } finally {
       setLoading(false);
     }
