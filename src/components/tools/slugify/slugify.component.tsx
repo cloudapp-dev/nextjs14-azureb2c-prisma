@@ -36,7 +36,6 @@ const Slugify: React.FC = () => {
   };
 
   return (
-    // <div className="flex flex-col items-center justify-center min-h-screen py-2">
     <div>
       <h2 className="text-3xl font-bold mb-4">Slugify String</h2>
       <input
