@@ -45,8 +45,6 @@ const Slugify: React.FC = () => {
         onChange={handleInputChange}
         className="block w-full  max-w-md h-10 border border-gray-200 rounded-md pl-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-base"
         placeholder="Enter text to slugify"
-        // className="p-2 mb-4 border border-gray-300 rounded w-full max-w-md"
-        // placeholder="Enter text to slugify"
       />
       <div className="p-4 border border-gray-300 rounded w-full max-w-md mb-6">
         <p className="text-lg font-semibold">Slugified Text:</p>
