@@ -74,6 +74,14 @@ Check tutorial for Next.js 14 / Upstash Redis - Adding a Clap Function within Mi
 
 Check tutorial Azure AD B2C/Prisma ORM - Data control via REST - Part 2 - https://www.cloudapp.dev/azure-ad-b2cprisma-orm-postgresql-control-your-data-via-rest-api-part2
 
+## SEO Toolbox
+
+Building a Sitemap counter -> https://www.cloudapp.dev/next-js-14-seo-create-a-sitemap-counter-in-5-minutes
+
+Building a Broken Link check based on sitemap.xml -> https://www.cloudapp.dev/nextjs-14-create-a-broken-link-checker-based-on-the-sitemapxml-to-safeguard-your-seo-rankings
+
+Enlarge your SEO Toolbox with a Slugify/Word & Character Count feature with no effort -> https://www.cloudapp.dev/nextjs-14-enlarge-your-seo-toolbox-with-a-slugifyword-and-character-count-feature-with-no-effort
+
 or simply run this command after the creation of the .env.local file
 
 ```bash

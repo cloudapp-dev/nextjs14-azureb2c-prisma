@@ -256,9 +256,9 @@ async function Home({ params }: PageProps) {
         {/* SitemapChecker */}
         <SitemapChecker />
         {/* WordCount */}
-        {/* <WordCount /> */}
+        <WordCount />
         {/* Slugify */}
-        {/* <Slugify /> */}
+        <Slugify />
       </Container>
     </>
   );
