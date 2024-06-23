@@ -5,12 +5,18 @@ import React, { useState } from "react";
 const WordCount: React.FC = () => {
   const [text, setText] = useState("");
   const [wordCount, setWordCount] = useState(0);
+  const [charCount, setCharCount] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputText = event.target.value;
     setText(inputText);
     const count = inputText.trim().split(/\s+/).filter(Boolean).length;
+    const charCount = inputText.length;
+    const digits = inputText.trim().match(/[^ ]/g); // Exclude spaces
+    const digitCount = digits?.length || 0;
+
     setWordCount(count);
+    setCharCount(digitCount);
   };
 
   return (
@@ -24,7 +30,8 @@ const WordCount: React.FC = () => {
         placeholder="Type or paste your text here..."
       ></textarea>
       <div className="text-lg">
-        Word Count: <span className="font-semibold">{wordCount}</span>
+        Word Count: <span className="font-semibold">{wordCount}</span> - Char
+        Count without Spaces: <span className="font-semibold">{charCount}</span>
       </div>
     </div>
   );
