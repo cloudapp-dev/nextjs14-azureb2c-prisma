@@ -6,12 +6,16 @@ import { Button } from "@tremor/react";
 import { ArticleTile } from "@/components/contentful/ArticleTile";
 import { PageBlogPostFieldsFragment } from "@/lib/__generated/sdk";
 
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 import { useState, useEffect } from "react";
 import { getPosts } from "@/actions/getPosts";
 
+import Pagination from "@/components/pagination/pagination.component";
+import { useSearchParams } from "next/navigation";
+
 interface ArticleTileGridProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;
+  postCount?: number;
   slug: string | null | undefined;
   locale: string;
   source: string;
@@ -19,19 +23,26 @@ interface ArticleTileGridProps extends HTMLProps<HTMLDivElement> {
 
 const NUMBER_OF_USERS_TO_FETCH = 10;
 
-export const ArticleTileGrid = ({
+export default function ArticleTileGrid({
   articles,
+  postCount,
   className,
   slug,
   locale,
   source,
   ...props
-}: ArticleTileGridProps) => {
+}: ArticleTileGridProps) {
   const [offset, setOffset] = useState(NUMBER_OF_USERS_TO_FETCH);
   const [posts, setPosts] = useState<any>(articles);
-  const { ref, inView } = useInView();
+  // Infinte scroll
+  // const { ref, inView } = useInView();
 
-  const loadMoreUsers = async () => {
+  //Pagination
+  const totalPages = postCount || 0;
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 0;
+
+  const loadMorePosts = async () => {
     const apiPosts = await getPosts(
       offset,
       NUMBER_OF_USERS_TO_FETCH,
@@ -41,7 +52,7 @@ export const ArticleTileGrid = ({
       slug || ""
     );
 
-    setPosts([...posts, ...apiPosts]);
+    setPosts([...posts, ...apiPosts.posts]);
     setOffset(offset + NUMBER_OF_USERS_TO_FETCH);
   };
 
@@ -68,18 +79,23 @@ export const ArticleTileGrid = ({
       </div>
       {/* Infinite Scroll */}
       {/* <div ref={ref}>Loading...</div> */}
+
       {/* Load More Button */}
       {source !== "relatedposts" && (
-        <div className="flex flex-col items-center">
-          <Button
-            onClick={loadMoreUsers}
-            size="lg"
-            className="mt-4 sm:flex sm:max-w-md"
-          >
-            Load more
-          </Button>
-        </div>
+        <>
+          <div className="flex flex-col items-center">
+            <Button
+              onClick={loadMorePosts}
+              disabled={currentPage > 0 || offset >= totalPages}
+              size="lg"
+              className="mt-4 sm:flex sm:max-w-md"
+            >
+              Load more
+            </Button>
+          </div>
+          {source !== "tag" && <Pagination totalPages={totalPages} />}
+        </>
       )}
     </>
   ) : null;
-};
+}

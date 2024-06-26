@@ -2741,7 +2741,7 @@ export type PageBlogPostCollectionQueryVariables = Exact<{
 }>;
 
 
-export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<(
+export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', total: number, items: Array<(
       { __typename?: 'PageBlogPost' }
       & PageBlogPostFieldsFragment
     ) | null> } | null };
@@ -3258,6 +3258,7 @@ export const PageBlogPostCollectionDocument = gql`
     order: $order
     where: $where
   ) {
+    total
     items {
       ...PageBlogPostFields
     }

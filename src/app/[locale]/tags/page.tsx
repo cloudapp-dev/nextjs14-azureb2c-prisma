@@ -5,7 +5,7 @@ import { client } from "@/lib/client";
 import { PageBlogPostOrder } from "@/lib/__generated/sdk";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from "next";
-import { ArticleTileGrid } from "@/components/contentful/ArticleTileGrid";
+import ArticleTileGrid from "@/components/contentful/ArticleTileGrid";
 import { LandingContent } from "@/components/contentful/ArticleContentLanding";
 import { Container } from "@/components/contentful/container/Container";
 import { TextHighLight } from "@/components/contentful/TextHighLight";
@@ -16,7 +16,11 @@ import { Article, WithContext } from "schema-dts";
 import path from "path";
 import Script from "next/script";
 
+import { TableSkeleton } from "@/components/pagination/skeleton.component";
+import { Suspense } from "react";
+
 export const revalidate = revalidateDuration; // revalidate at most every hour
+export const dynamic = "force-dynamic";
 
 const apikey = process.env.API_KEY;
 
@@ -25,8 +29,14 @@ interface PageParams {
   locale: string;
 }
 
+interface SearchParamsProps {
+  query?: string;
+  page?: string;
+}
+
 interface PageProps {
   params: PageParams;
+  searchParams?: SearchParamsProps;
 }
 
 const generateUrl = (locale: string, slug: string) => {
@@ -99,7 +109,11 @@ export async function generateMetadata(
   };
 }
 
-async function TagHomePage({ params }: PageProps) {
+async function TagHomePage({ params, searchParams }: PageProps) {
+  const NUMBER_OF_USERS_TO_FETCH = 10;
+
+  const currentPage = Number(searchParams?.page) || 1;
+
   // Make sure to use the correct namespace here.
   const { t } = await createTranslation(params.locale as LocaleTypes, "common");
   const { isEnabled } = draftMode();
@@ -110,15 +124,18 @@ async function TagHomePage({ params }: PageProps) {
   });
   const page = landingPageData.pageLandingCollection?.items[0];
 
+  const newOffset = Number(currentPage - 1) * NUMBER_OF_USERS_TO_FETCH;
+
   const blogPostsData = await client.pageBlogPostCollection({
     limit: 10,
     locale: params.locale.toString(),
-    skip: 0,
+    skip: newOffset,
     preview: isEnabled,
     order: PageBlogPostOrder.PublishedDateDesc,
   });
 
   const posts = blogPostsData.pageBlogPostCollection?.items;
+  const postCount = blogPostsData.pageBlogPostCollection?.total;
 
   const seoItem = page?.seoFields?.shareImagesCollection?.items[0];
 
@@ -222,13 +239,17 @@ async function TagHomePage({ params }: PageProps) {
         {posts.length > 0 && (
           <h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
         )}
-        <ArticleTileGrid
-          className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-          articles={posts}
-          slug=""
-          source="loadmoretags"
-          locale={params.locale.toString()}
-        />
+
+        <Suspense key={currentPage} fallback={<TableSkeleton />}>
+          <ArticleTileGrid
+            className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            articles={posts}
+            postCount={postCount}
+            slug=""
+            source="loadmoretags"
+            locale={params.locale.toString()}
+          />
+        </Suspense>
       </Container>
     </>
   );

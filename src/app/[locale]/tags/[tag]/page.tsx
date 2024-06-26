@@ -3,7 +3,7 @@ import { locales, LocaleTypes } from "@/app/i18n/settings";
 import { notFound } from "next/navigation";
 import { draftMode } from "next/headers";
 import { Metadata, ResolvingMetadata } from "next";
-import { ArticleTileGrid } from "@/components/contentful/ArticleTileGrid";
+import ArticleTileGrid from "@/components/contentful/ArticleTileGrid";
 import { PageBlogPostOrder } from "@/lib/__generated/sdk";
 import { TagPageContent } from "@/components/contentful/ArticleContentTagPage";
 import { client } from "@/lib/client";

@@ -2,7 +2,7 @@ import { ArticleContent } from "@/components/contentful/ArticleContent.component
 import { client } from "@/lib/client";
 import { notFound } from "next/navigation";
 import { ArticleHero } from "@/components/contentful/ArticleHero";
-import { ArticleTileGrid } from "@/components/contentful/ArticleTileGrid";
+import ArticleTileGrid from "@/components/contentful/ArticleTileGrid";
 import { Container } from "@/components/contentful/container/Container";
 import { draftMode } from "next/headers";
 // Internationalization

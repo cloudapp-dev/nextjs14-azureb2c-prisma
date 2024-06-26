@@ -53,11 +53,9 @@ export const getPosts = async (
     }
 
     const posts: any = blogPostsData.pageBlogPostCollection?.items;
+    const pageCount = blogPostsData.pageBlogPostCollection?.total;
 
-    // const url = `https://api.slingacademy.com/v1/sample-data/users?offset=${offset}&limit=${limit}`;
-    // const response = await fetch(url);
-    // const data = (await response.json()) as UserAPIResponse;
-    return posts;
+    return { posts: posts, pageCount: pageCount };
   } catch (error: unknown) {
     console.log(error);
     throw new Error(`An error happened: ${error}`);

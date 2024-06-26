@@ -1,7 +1,7 @@
 import { client } from "@/lib/client";
 import { notFound } from "next/navigation";
 import { ArticleHero } from "@/components/contentful/ArticleHero";
-import { ArticleTileGrid } from "@/components/contentful/ArticleTileGrid";
+import ArticleTileGrid from "@/components/contentful/ArticleTileGrid";
 import { Container } from "@/components/contentful/container/Container";
 import { draftMode } from "next/headers";
 // Internationalization
@@ -20,20 +20,30 @@ import { TagCloudSimpleHome } from "@/components/search/tagcloudsimpleHome.compo
 import Link from "next/link";
 import { LandingContent } from "@/components/contentful/ArticleContentLanding";
 
-import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
-import WordCount from "@/components/tools/wordcount/wordcount.component";
-import SitemapChecker from "@/components/tools/sitemapchecker/sitemapchecker.component";
-import Slugify from "@/components/tools/slugify/slugify.component";
+import { TableSkeleton } from "@/components/pagination/skeleton.component";
+import { Suspense } from "react";
+
+// import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
+// import WordCount from "@/components/tools/wordcount/wordcount.component";
+// import SitemapChecker from "@/components/tools/sitemapchecker/sitemapchecker.component";
+// import Slugify from "@/components/tools/slugify/slugify.component";
 
 export const revalidate = revalidateDuration; // revalidate at most every hour
+export const dynamic = "force-dynamic";
 
 interface PageParams {
   slug: string;
   locale: string;
 }
 
+interface SearchParamsProps {
+  query?: string;
+  page?: string;
+}
+
 interface PageProps {
   params: PageParams;
+  searchParams?: SearchParamsProps;
 }
 
 const generateUrl = (locale: string, slug: string) => {
@@ -108,7 +118,7 @@ export async function generateMetadata(
   };
 }
 
-async function Home({ params }: PageProps) {
+async function Home({ params, searchParams }: PageProps) {
   const { isEnabled } = draftMode();
   //declare JSON-LD schema
   let jsonLd: WithContext<Article> = {} as WithContext<Article>;
@@ -119,6 +129,10 @@ async function Home({ params }: PageProps) {
       preview: isEnabled,
     }),
   ]);
+
+  const NUMBER_TO_FETCH = 10;
+
+  const currentPage = Number(searchParams?.page) || 1;
 
   const page = landingPageData.pageLandingCollection?.items[0];
 
@@ -154,11 +168,13 @@ async function Home({ params }: PageProps) {
     }
   }
 
+  const newOffset = Number(currentPage - 1) * NUMBER_TO_FETCH;
+
   // Getting BlogPosts
   const blogPostsData = await client.pageBlogPostCollection({
     limit: 10,
     locale: params.locale.toString(),
-    skip: 0,
+    skip: newOffset,
     preview: isEnabled,
     order: PageBlogPostOrder.PublishedDateDesc,
     where: {
@@ -166,6 +182,7 @@ async function Home({ params }: PageProps) {
     },
   });
   const posts = blogPostsData.pageBlogPostCollection?.items;
+  const postCount = blogPostsData.pageBlogPostCollection?.total;
 
   // Create JSON-LD schema only if blogPost is available
   if (page) {
@@ -244,21 +261,26 @@ async function Home({ params }: PageProps) {
         {posts.length > 0 && (
           <h2 className="mb-4 md:mb-6">{t("landingPage.latestArticles")}</h2>
         )}
-        <ArticleTileGrid
-          className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-          articles={posts}
-          slug={page.featuredBlogPost.slug}
-          source="loadmore"
-          locale={params.locale.toString()}
-        />
+
+        <Suspense key={currentPage} fallback={<TableSkeleton />}>
+          <ArticleTileGrid
+            className="grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+            articles={posts}
+            postCount={postCount}
+            slug={page.featuredBlogPost.slug}
+            source="loadmore"
+            locale={params.locale.toString()}
+          />
+        </Suspense>
+
         {/* SitemapCounter */}
-        <Sitemapcounter />
+        {/* <Sitemapcounter /> */}
         {/* SitemapChecker */}
-        <SitemapChecker />
+        {/* <SitemapChecker /> */}
         {/* WordCount */}
-        <WordCount />
+        {/* <WordCount /> */}
         {/* Slugify */}
-        <Slugify />
+        {/* <Slugify /> */}
       </Container>
     </>
   );
