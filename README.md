@@ -82,6 +82,8 @@ Building a Broken Link check based on sitemap.xml -> https://www.cloudapp.dev/ne
 
 Enlarge your SEO Toolbox with a Slugify/Word & Character Count feature with no effort -> https://www.cloudapp.dev/nextjs-14-enlarge-your-seo-toolbox-with-a-slugifyword-and-character-count-feature-with-no-effort
 
+Combine Pagination with Infinite Scroll - > https://www.cloudapp.dev/nextjs-14-seo-combine-pagination-with-infinite-scroll-to-obtain-the-best-of-both-worlds
+
 or simply run this command after the creation of the .env.local file
 
 ```bash
