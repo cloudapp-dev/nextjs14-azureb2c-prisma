@@ -20,18 +20,24 @@ export default function SocialSharing({
 }: ShareProps) {
   return (
     <div className="flex justify-center">
-      <TwitterShare url={locale + "/" + slug || ""} title={title || ""} />
+      <TwitterShare
+        url={locale + "/" + slug || ""}
+        title={title || ""}
+        size={44}
+      />
       <FacebookShare
         url={locale + "/" + slug || ""}
         quote={title || ""}
         hashtag={"#react-share-kit"}
+        size={44}
       />
       <FacebookCount url={locale + "/" + slug || ""} appId="" appSecret="" />
-      <LinkedinShare url={locale + "/" + slug || ""} />
+      <LinkedinShare url={locale + "/" + slug || ""} size={44} />
       <WhatsappShare
         url={locale + "/" + slug || ""}
         title={title || ""}
         separator=":: "
+        size={44}
       />
     </div>
   );
