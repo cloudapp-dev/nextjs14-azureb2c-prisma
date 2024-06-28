@@ -84,6 +84,10 @@ Enlarge your SEO Toolbox with a Slugify/Word & Character Count feature with no 
 
 Combine Pagination with Infinite Scroll - > https://www.cloudapp.dev/nextjs-14-seo-combine-pagination-with-infinite-scroll-to-obtain-the-best-of-both-worlds
 
+## Social Share Buttons
+
+Boost Blog Traffic: Reasons to Add Social Share Buttons Now -> https://www.cloudapp.dev/boost-blog-traffic-reasons-to-add-social-share-buttons-now
+
 or simply run this command after the creation of the .env.local file
 
 ```bash
