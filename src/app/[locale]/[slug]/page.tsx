@@ -19,6 +19,9 @@ import ClapButton from "@/components/contentful/ClapButton.component";
 // ViewCount
 import { ReportView } from "@/components/analytics/viewcount";
 import redis from "../../../lib/redis";
+// Social Sharing
+import SocialSharing from "@/components/sharing/socialsharing.component";
+import SocialSharingLite from "@/components/sharing/socialsharinglite.component";
 
 interface BlogPostPageParams {
   slug: string;
@@ -259,6 +262,18 @@ async function BlogPostPage({ params }: BlogPostPageProps) {
             source={"blog"}
           />
         )}
+        <div className="mt-4" />
+        <SocialSharing
+          slug={params.locale.toString() + "/" + blogPost.slug || ""}
+          title={blogPost.title || ""}
+          locale={params.locale.toString()}
+        />
+        <div className="mt-4" />
+        {/* <SocialSharingLite
+          slug={params.locale.toString() + "/" + blogPost.slug || ""}
+          title={blogPost.title || ""}
+          locale={params.locale.toString()}
+        /> */}
         <div className="mt-4" />
         <ArticleContent article={blogPost} />
       </Container>

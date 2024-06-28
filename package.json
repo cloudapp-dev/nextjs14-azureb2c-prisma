@@ -50,6 +50,8 @@
     "react-instantsearch-router-nextjs": "^7.7.1",
     "react-intersection-observer": "^9.10.3",
     "react-medium-image-zoom": "^5.2.0",
+    "react-share-kit": "^1.1.0",
+    "react-share-lite": "^1.1.0",
     "react-toastify": "^10.0.5",
     "schema-dts": "^1.1.2",
     "sharp": "^0.33.2",
