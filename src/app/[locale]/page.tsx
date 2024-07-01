@@ -23,9 +23,9 @@ import { LandingContent } from "@/components/contentful/ArticleContentLanding";
 import { TableSkeleton } from "@/components/pagination/skeleton.component";
 import { Suspense } from "react";
 
-// import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
+import Sitemapcounter from "@/components/tools/sitemapcounter/counter.component";
 // import WordCount from "@/components/tools/wordcount/wordcount.component";
-// import SitemapChecker from "@/components/tools/sitemapchecker/sitemapchecker.component";
+import SitemapChecker from "@/components/tools/sitemapchecker/sitemapchecker.component";
 // import Slugify from "@/components/tools/slugify/slugify.component";
 
 export const revalidate = revalidateDuration; // revalidate at most every hour
@@ -274,7 +274,7 @@ async function Home({ params, searchParams }: PageProps) {
         </Suspense>
 
         {/* SitemapCounter */}
-        {/* <Sitemapcounter /> */}
+        <Sitemapcounter />
         {/* SitemapChecker */}
         {/* <SitemapChecker /> */}
         {/* WordCount */}
